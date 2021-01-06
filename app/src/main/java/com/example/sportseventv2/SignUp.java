@@ -53,7 +53,6 @@ public class SignUp extends AppCompatActivity {
                 String username = regUsername.getEditText().getText().toString();
                 String password = regPassword.getEditText().getText().toString();
 
-
                 UserHelperClass helperClass = new UserHelperClass(name, email, phoneNo,username,password);
 
                 reference.child(phoneNo).setValue(helperClass);
