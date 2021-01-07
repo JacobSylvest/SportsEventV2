@@ -36,6 +36,13 @@ public class Login extends AppCompatActivity {
         username = findViewById(R.id.brugernavn);
         password = findViewById(R.id.password);
         login_btn = findViewById(R.id.fortsæt_login);
+        login_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openBottomNavigation();
+            }
+        });
+
 
         callSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,5 +63,11 @@ public class Login extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void openBottomNavigation(){
+        Intent intent = new Intent(this, BottomNavigation.class);
+        startActivity(intent);
+
     }
 }
