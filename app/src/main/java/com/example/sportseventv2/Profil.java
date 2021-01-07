@@ -37,7 +37,7 @@ public class Profil extends AppCompatActivity {
 
                     case R.id.løb:
                         startActivity(new Intent(getApplicationContext()
-                                , BottomNavigation.class));
+                                , Løb.class));
                         overridePendingTransition(0, 0);
 
                     case R.id.profil:

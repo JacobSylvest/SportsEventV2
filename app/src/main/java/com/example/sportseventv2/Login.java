@@ -66,7 +66,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void openBottomNavigation(){
-        Intent intent = new Intent(this, BottomNavigation.class);
+        Intent intent = new Intent(this, Løb.class);
         startActivity(intent);
 
     }
