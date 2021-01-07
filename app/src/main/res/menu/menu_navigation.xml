@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/kalender"
+        android:title="Kalender"
+        android:icon="@drawable/ic_date"/>
+
+    <item
+        android:id="@+id/løb"
+        android:title="Løb"
+        android:icon="@drawable/ic_timer"/>
+
+    <item
+        android:id="@+id/profil"
+        android:title="Profil"
+        android:icon="@drawable/ic_baseline_person_24"/>
+
+
+</menu>

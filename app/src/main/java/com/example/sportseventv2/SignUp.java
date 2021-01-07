@@ -22,10 +22,12 @@ public class SignUp extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
 
         //Hooks til xml-koden.
 
@@ -44,6 +46,7 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View view) {
                 rootNode = FirebaseDatabase.getInstance();
                 reference = rootNode.getReference("users");
+
 
                 //get all values from the textfiles shown in .xml/activity_sign_up. (aka. de 5første lige ovenfor ved hooks) ;)
 
