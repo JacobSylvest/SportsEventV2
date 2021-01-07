@@ -11,7 +11,7 @@
         android:theme="@style/Theme.SportsEventV2">
         <activity android:name=".Profil"></activity>
         <activity android:name=".Kalender" />
-        <activity android:name=".BottomNavigation" />
+        <activity android:name=".Løb" />
         <activity android:name=".UserProfile" />
         <activity android:name=".SignUp" />
         <activity android:name=".Login" />

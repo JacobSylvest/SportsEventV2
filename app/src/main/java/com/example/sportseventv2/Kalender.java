@@ -34,8 +34,9 @@ public class Kalender extends AppCompatActivity {
 
                     case R.id.løb:
                         startActivity(new Intent(getApplicationContext()
-                                , BottomNavigation.class));
+                                , Løb.class));
                         overridePendingTransition(0, 0);
+                        return true;
 
                     case R.id.profil:
                         startActivity(new Intent(getApplicationContext()

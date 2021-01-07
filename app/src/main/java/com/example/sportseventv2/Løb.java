@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class BottomNavigation extends AppCompatActivity {
+public class Løb extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,6 @@ public class BottomNavigation extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //sætter Løb som hjemmeskærm:
-
         bottomNavigationView.setSelectedItemId(R.id.løb);
 
         //Laver itemSelectedListener
