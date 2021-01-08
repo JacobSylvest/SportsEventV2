@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/cal_bgg"
-    tools:context=".Kalender">
+    tools:context=".Kalender"
+    android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventRecycler"
