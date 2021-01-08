@@ -15,10 +15,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="10dp"
+        android:src="@drawable/sportsevent___tekst___bl_"
         android:transitionName="logo_image"
-        android:src="@drawable/sportsevent___tekst___hvid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
         android:id="@+id/log_ind_besked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log ind nedenfor:"
+        android:text="Log ind:"
         android:textColor="#fff"
         android:textSize="14sp"
         android:transitionName="log_ind_besked" />
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:transitionName="brugernavn_slot"
-                android:background="@android:drawable/editbox_background"
+                android:background="#CCFFFFFF"
                 android:textColor="#fff" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -71,7 +71,6 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/editbox_background"
             android:hint="Password"
             app:passwordToggleEnabled="true">
 
@@ -80,6 +79,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:transitionName="password_slot"
+                android:background="#CCFFFFFF"
                 android:textColor="#fff" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -96,7 +96,7 @@
         android:fontFamily="sans-serif-condensed"
         android:text="Glemt kodeord?"
         android:textAlignment="textEnd"
-        android:textColor="#323232" />
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/fortsæt_login"
