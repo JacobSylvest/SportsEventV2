@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Kalender extends AppCompatActivity {
+public class Kalender extends TopMenu {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +50,6 @@ public class Kalender extends AppCompatActivity {
                 return false;
             }
         });
+
     }
 }
