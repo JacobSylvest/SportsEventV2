@@ -34,6 +34,13 @@ public class EventAdapter extends RecyclerView.Adapter<EventHolder> {
         holder.eventTitle.setText(eventModels.get(position).getEventTitle());
         holder.eventText.setText(eventModels.get(position).getEventText());
         holder.imageView.setImageResource(eventModels.get(position).getImage());
+
+        holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClickListener(View v, int position) {
+
+            }
+        });
     }
 
     @Override
