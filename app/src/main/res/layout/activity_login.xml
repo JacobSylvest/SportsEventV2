@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2F5597"
+    android:background="@drawable/cal_bgg"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".Login">
@@ -61,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:transitionName="brugernavn_slot"
+                android:background="@android:drawable/editbox_background"
                 android:textColor="#fff" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -70,6 +71,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
             android:hint="Password"
             app:passwordToggleEnabled="true">
 
