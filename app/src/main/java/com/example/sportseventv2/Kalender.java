@@ -15,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-public class Kalender extends AppCompatActivity {
+public class Kalender extends TopMenu {
 
     RecyclerView recyclerView;
     EventAdapter eventAdapter;
