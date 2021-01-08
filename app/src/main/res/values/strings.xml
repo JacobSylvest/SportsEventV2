@@ -10,6 +10,13 @@
     <string name="head_kontakt">Kontakt</string>
     <string name="head_registrer">Registrering</string>
 
+    <!--Strings til login -->
+    <string name="login_velkommen">Velkommen</string>
+    <string name="hint_pass">Kodeord</string>
+    <string name="hint_user">Brugernavn</string>
+    <string name="glemt">Glemt Kodeord?</string>
+    <string name="fortsæt">Fortsæt</string>
+    <string name="ny">Ny bruger? Registrer her</string>
 
 
 </resources>
