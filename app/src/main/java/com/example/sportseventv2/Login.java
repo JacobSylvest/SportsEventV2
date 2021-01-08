@@ -170,6 +170,9 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    /**
+     * Metode til at åbne løb.class
+     */
     public void openBottomNavigation(){
         Intent intent = new Intent(this, Løb.class);
         startActivity(intent);
