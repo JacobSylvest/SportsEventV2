@@ -7,7 +7,10 @@
     tools:context=".SignUp"
     android:orientation="vertical"
     android:background="#2F5597"
-    android:padding="20dp">
+    android:paddingTop="0dp"
+    android:paddingBottom="5dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
 
     <ImageView
@@ -27,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed"
-        android:text="Velkommen"
+        android:text="@string/login_velkommen"
         android:transitionName="slogan_text"
         android:textColor="#fff"
         android:textSize="24sp" />
@@ -36,7 +39,7 @@
         android:id="@+id/log_ind_besked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrer nedenfor:"
+        android:text="@string/reg_ned"
         android:transitionName="log_ind_besked"
         android:textColor="#fff"
         android:textSize="14sp" />
@@ -53,12 +56,13 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fulde navn">
+            android:hint="@string/full_na">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:background="#CCFFFFFF"
                 android:textColor="#fff" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -68,12 +72,13 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email">
+            android:hint="@string/email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
+                android:background="#CCFFFFFF"
                 android:textColor="#fff" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -83,12 +88,13 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Telefonnummer">
+            android:hint="@string/phone">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:background="#CCFFFFFF"
                 android:textColor="#fff" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -100,13 +106,14 @@
             android:layout_height="wrap_content"
             app:counterEnabled="true"
             app:counterMaxLength="20"
-            android:hint="Øsket brugernavn">
+            android:hint="@string/w_user">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:transitionName="brugernavn_slot"
+                android:background="#CCFFFFFF"
                 android:textColor="#fff" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -117,13 +124,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:passwordToggleEnabled="true"
-            android:hint="Ønsket Password">
+            android:hint="@string/w_pass">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:transitionName="password_slot"
+                android:background="#CCFFFFFF"
                 android:textColor="#fff" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -139,7 +147,7 @@
         android:layout_marginBottom="5dp"
         android:background="#00000000"
         android:fontFamily="sans-serif-condensed"
-        android:text="Registrer"
+        android:text="@string/reg"
         android:transitionName="fortsæt_knap"
         android:textAlignment="center"
         android:textColor="#FFFFFF" />
@@ -149,10 +157,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:background="#00000000"
         android:fontFamily="sans-serif-condensed"
-        android:text="Allerede bruger? Log ind her"
+        android:text="@string/all_r_user"
         android:transitionName="logind_signind_knap"
         android:textAlignment="center"
         android:textColor="#FFFFFF" />

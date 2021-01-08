@@ -17,6 +17,12 @@
     <string name="glemt">Glemt Kodeord?</string>
     <string name="fortsæt">Fortsæt</string>
     <string name="ny">Ny bruger? Registrer her</string>
-
-
+    <string name="reg_ned">Indtast oplysninger:</string>
+    <string name="full_na">Fulde navn</string>
+    <string name="email">Email</string>
+    <string name="phone">Telefonnummer</string>
+    <string name="w_user">Ønsket brugernavn</string>
+    <string name="w_pass">Ønsket Password</string>
+    <string name="reg">Registrer</string>
+    <string name="all_r_user">Allerede bruger? Log ind her</string>
 </resources>
