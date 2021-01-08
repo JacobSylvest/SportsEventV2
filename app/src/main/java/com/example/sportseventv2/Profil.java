@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Profil extends AppCompatActivity {
+public class Profil extends TopMenu {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
