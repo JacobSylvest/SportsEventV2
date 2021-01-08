@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">SportsEventV2</string>
+    <string name="app_name">SportsEvent</string>
+
+    <!--Strings til overskrifter -->
+    <string name="head_login">Login</string>
+    <string name="head_loeb">Løb</string>
+    <string name="head_kalender">Kalender</string>
+    <string name="head_hjaelp">Hjælp</string>
+    <string name="head_profil">Profil</string>
+    <string name="head_kontakt">Kontakt</string>
+    <string name="head_registrer">Registrering</string>
+
+
+
 </resources>
