@@ -2,28 +2,41 @@ package com.example.sportseventv2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.example.sportseventv2.model.EventAdapter;
+import com.example.sportseventv2.model.EventModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 public class Kalender extends TopMenu {
+
+    RecyclerView recyclerView;
+    EventAdapter eventAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kalender);
 
-        //initialiserer og tilknytter/tildeler variabler
+        // View til Kalenderen
+        recyclerView = findViewById(R.id.eventRecycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this)); // laver recycleren i linearLayout
+        eventAdapter = new EventAdapter(this,getMyList());
+        recyclerView.setAdapter(eventAdapter);
 
+
+
+        //initialiserer og tilknytter/tildeler variabler
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //sætter Løb som hjemmeskærm:
-
         bottomNavigationView.setSelectedItemId(R.id.kalender);
 
         //Laver itemSelectedListener
@@ -50,6 +63,31 @@ public class Kalender extends TopMenu {
                 return false;
             }
         });
+    }
 
+    // TODO Denne Metode laver indhold til Eventlisten
+    // Det er hardcoded nu, men skal laves dynamisk i forbindelse med databasen.
+    private ArrayList<EventModel> getMyList(){
+        ArrayList<EventModel> eventModels = new ArrayList<>();
+
+        EventModel m = new EventModel();
+        m.setEventTitle("Mongol Ræs");
+        m.setEventText("Et ræs for Jacob & Nikolaj");
+        m.setImage(R.drawable.niko_jaco);
+        eventModels.add(m);
+
+        m = new EventModel();
+        m.setEventTitle("Abe Ræs");
+        m.setEventText("Et ræs for Jacob & Nikolaj");
+        m.setImage(R.drawable.niko_jaco);
+        eventModels.add(m);
+
+        m = new EventModel();
+        m.setEventTitle("Røv Ræs");
+        m.setEventText("Et ræs for Jacob & Nikolaj");
+        m.setImage(R.drawable.niko_jaco);
+        eventModels.add(m);
+
+        return eventModels;
     }
 }
