@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.sportseventv2"
-        minSdkVersion 30
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -32,6 +32,8 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    //implementation 'androidx.recyclerview:appcompat:1.1.0'
+    //implementation 'androidx.cardview:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.android.material:material:1.2.1'
