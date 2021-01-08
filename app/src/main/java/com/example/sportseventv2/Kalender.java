@@ -25,9 +25,9 @@ public class Kalender extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kalender);
 
+        // View til Kalenderen
         recyclerView = findViewById(R.id.eventRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this)); // laver recycleren i linearLayout
-
         eventAdapter = new EventAdapter(this,getMyList());
         recyclerView.setAdapter(eventAdapter);
 
@@ -65,7 +65,8 @@ public class Kalender extends AppCompatActivity {
         });
     }
 
-    //TODO Denne Metode laver inhold til Enventlisten
+    // TODO Denne Metode laver indhold til Eventlisten
+    // Det er hardcoded nu, men skal laves dynamisk i forbindelse med databasen.
     private ArrayList<EventModel> getMyList(){
         ArrayList<EventModel> eventModels = new ArrayList<>();
 
