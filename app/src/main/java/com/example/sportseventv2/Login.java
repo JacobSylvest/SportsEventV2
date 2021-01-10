@@ -52,8 +52,7 @@ public class Login extends AppCompatActivity {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isUser)
-                openBottomNavigation();
+                loginUser(v);
             }
         });
 
