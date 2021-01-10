@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Event">
+    tools:context=".Event"
+    android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
 
 
     <ImageView
@@ -52,5 +53,6 @@
         android:transitionName="fortsæt_knap"
         android:textAlignment="center"
         android:textColor="@color/green"
-        android:layout_below="@id/eventImage2"/>
+        android:layout_below="@id/eventImage2"
+        android:paddingTop="10dp"/>
 </RelativeLayout>

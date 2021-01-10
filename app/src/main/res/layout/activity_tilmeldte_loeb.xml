@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TilmeldteLoeb"
+    android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2F5597"
+        android:padding="20dp"
+        android:id="@+id/profile_top">
+
+        <ImageView
+            android:id="@+id/profil_logo2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/profile_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/full_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/profil_logo2"
+            android:fontFamily="sans-serif-condensed"
+            android:includeFontPadding="false"
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/user_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/full_name2"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/profil_logo2"
+            android:fontFamily="sans-serif-condensed"
+            android:includeFontPadding="false"
+            android:textColor="#000"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tilmeldt_list"
+        android:layout_below="@id/profile_top"
+        android:paddingBottom="40dp"/>
+
+
+</RelativeLayout>

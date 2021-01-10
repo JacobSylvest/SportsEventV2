@@ -1,7 +1,6 @@
 package com.example.sportseventv2;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,27 +11,24 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.security.PrivateKey;
-
-public class Profil extends TopMenu {
+public class Profil extends TopMenu implements View.OnClickListener {
 
     TextView fullName, username;
 
-    private Button button;
+    private Button redigerBtn, tilmeldte_loeb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
 
-        button = findViewById(R.id.rediger_profil);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openRedigerProfil();
+        redigerBtn = findViewById(R.id.rediger_profil);
+        redigerBtn.setOnClickListener(this);
 
-            }
-        });
+        tilmeldte_loeb = findViewById(R.id.tilmeldte_løb);
+        tilmeldte_loeb.setOnClickListener(this);
+
+
 
         //initialiserer og tilknytter/tildeler variabler
 
@@ -81,13 +77,24 @@ public class Profil extends TopMenu {
 
         fullName.setText(user_name);
         username.setText(user_username);
-
-
-
     }
 
     public void openRedigerProfil(){
         Intent intent = new Intent(this, RedigerProfil.class);
         startActivity(intent);
+    }
+
+    public void openTilmeldteLoeb(){
+        Intent intent = new Intent(this, TilmeldteLoeb.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v==tilmeldte_loeb){
+            openTilmeldteLoeb();
+        }if (v == redigerBtn){
+            openRedigerProfil();
+        }
     }
 }

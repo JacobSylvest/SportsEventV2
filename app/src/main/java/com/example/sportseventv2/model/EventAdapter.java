@@ -25,10 +25,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     private static final String TAG = "EventAdapter";
     LayoutInflater inflater;
     List<String> titles, descriptions, imageUrls;
-    Context context;
+    Context mContext;
 
 
     public EventAdapter(Context context, List<String> titles, List<String> descriptions, List<String> imageUrls){
+        mContext = context;
         this.inflater = LayoutInflater.from(context);
         this.titles = titles;
         this.descriptions = descriptions;
@@ -61,12 +62,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: der er trykket på et Event");
-                Intent intent = new Intent(context, Event.class);
+
+                Intent intent = new Intent(mContext, Event.class);
                 intent.putExtra("image_event",imageUrls.get(position));
                 intent.putExtra("title_event",titles.get(position));
                 intent.putExtra("description_event",descriptions.get(position));
-                context.startActivity(intent);
-                System.out.println("der er trykket");
+                mContext.startActivity(intent);
             }
         });
     }
