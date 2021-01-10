@@ -114,8 +114,10 @@ public class Kalender extends TopMenu {
             }
         });
     }
+
     private void showData(){
         recyclerView = findViewById(R.id.eventRecycler);
+        recyclerView.setHasFixedSize(true);// gør recyclerview hurtigere
         eventAdapter = new EventAdapter(this, titles, descriptions, imageUrl);
         recyclerView.setLayoutManager(new LinearLayoutManager(this)); // laver recycleren i linearLayout
         recyclerView.setAdapter(eventAdapter);
