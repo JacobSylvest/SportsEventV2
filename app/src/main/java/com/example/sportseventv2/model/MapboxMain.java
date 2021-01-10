@@ -122,7 +122,7 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
 
     private void setCameraPosition(Location location){
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),
-                location.getLongitude()), 13.0));
+                location.getLongitude()), 12.0));
     }
     @Override
     @SuppressWarnings("MissingPermission")
