@@ -43,7 +43,7 @@ public class Login extends AppCompatActivity {
         image = findViewById(R.id.logo_login);
         logoText = findViewById(R.id.velkommen_besked);
         sloganText = findViewById(R.id.log_ind_besked);
-        username = findViewById(R.id.brugernavn);
+        username = findViewById(R.id.telefonnummer);
         password = findViewById(R.id.password);
         login_btn = findViewById(R.id.fortsæt_login);
 
@@ -129,7 +129,7 @@ public class Login extends AppCompatActivity {
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
 
-        Query checkUser = reference.orderByChild("username").equalTo(userEnteredUsername);
+        Query checkUser = reference.orderByChild("phoneNo").equalTo(userEnteredUsername);
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -138,11 +138,11 @@ public class Login extends AppCompatActivity {
                 username.setErrorEnabled(false);
 
                 if(dataSnapshot.exists()){
-                    String usernameFromDB = dataSnapshot.child(userEnteredUsername).child("username").getValue(String.class);
+                    String usernameFromDB = dataSnapshot.child(userEnteredUsername).child("phoneNo").getValue(String.class);
                     if(usernameFromDB.equals(userEnteredUsername)){
                         //String emailFromDB = dataSnapshot.child(userEnteredUsername).child("emial").getValue(String.class);
                         String nameFromDB = dataSnapshot.child(userEnteredUsername).child("name").getValue(String.class);
-                        //String passwordFromDB = dataSnapshot.child(userEnteredUsername).child("password").getValue(String.class);
+                        //String passwordFromDB = dataSnapshot.child(userEnteredPassword).child("password").getValue(String.class);
                         //String phoneNoFromDB = dataSnapshot.child(userEnteredUsername).child("phoneNo").getValue(String.class);
 
                         Intent intent = new Intent(getApplicationContext(),Profil.class);
