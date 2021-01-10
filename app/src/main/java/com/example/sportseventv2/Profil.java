@@ -6,15 +6,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.security.PrivateKey;
+
 public class Profil extends TopMenu {
+
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
+
+        button = findViewById(R.id.rediger_profil);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openRedigerProfil();
+
+            }
+        });
 
         //initialiserer og tilknytter/tildeler variabler
 
@@ -47,5 +62,9 @@ public class Profil extends TopMenu {
                 return false;
             }
         });
+    }
+    public void openRedigerProfil(){
+        Intent intent = new Intent(this, RedigerProfil.class);
+        startActivity(intent);
     }
 }

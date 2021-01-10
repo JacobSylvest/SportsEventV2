@@ -160,7 +160,7 @@
 
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/tilmeldte_løb"
             android:layout_width="0dp"
             android:layout_height="125dp"
             android:layout_margin="10dp"
@@ -172,7 +172,7 @@
 
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/rediger_profil"
             android:layout_width="0dp"
             android:layout_height="125dp"
             android:layout_margin="10dp"
