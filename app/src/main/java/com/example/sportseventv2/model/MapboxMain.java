@@ -117,12 +117,12 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
         locationLayerPlugin = new LocationLayerPlugin(mapView, map, locationEngine);
         locationLayerPlugin.setLocationLayerEnabled(true);
         locationLayerPlugin.setCameraMode(CameraMode.TRACKING);
-        locationLayerPlugin.setRenderMode(RenderMode.NORMAL);
+        locationLayerPlugin.setRenderMode(RenderMode.COMPASS);
     }
-
+//TODO tilpas zoom til det ønskede
     private void setCameraPosition(Location location){
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),
-                location.getLongitude()), 12.0));
+                location.getLongitude()), 70.0));
     }
     @Override
     @SuppressWarnings("MissingPermission")
