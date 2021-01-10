@@ -10,4 +10,9 @@
     <color name="trans_white">#CCFFFFFF</color>
     <color name="background_color">#2F5597</color>
     <color name="temafarve">#2F5597</color>
+
+    <!--Farver til mapbox -->
+    <color name="mapboxWhite">#ffffff</color>
+    <color name="mapboxBlue">#2F5597</color>
+    <color name="mapboxGrayLight">#c6d2e1</color>
 </resources>

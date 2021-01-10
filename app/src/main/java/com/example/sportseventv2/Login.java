@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -52,7 +51,7 @@ public class Login extends AppCompatActivity {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openBottomNavigation();
+                openMainPage();
             }
         });
 
@@ -173,7 +172,7 @@ public class Login extends AppCompatActivity {
     /**
      * Metode til at åbne løb.class
      */
-    public void openBottomNavigation(){
+    public void openMainPage(){
         Intent intent = new Intent(this, Løb.class);
         startActivity(intent);
 

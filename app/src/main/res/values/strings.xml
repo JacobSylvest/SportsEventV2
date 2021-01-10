@@ -25,4 +25,7 @@
     <string name="w_pass">Ønsket Password</string>
     <string name="reg">Registrer</string>
     <string name="all_r_user">Allerede bruger? Log ind her</string>
+
+    <!--String(s) til mapbox -->
+    <string name="access_token">pk.eyJ1Ijoibmlrb2xham1vcmdlbiIsImEiOiJja2pyMGpmZDEwbmtuMnNqeDJzMnRuazVoIn0.OlvDLSLRuN9m2Yk-B--9YQ</string>
 </resources>

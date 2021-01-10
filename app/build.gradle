@@ -39,9 +39,12 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
+    //Calender upload from .xls file
     implementation 'net.sourceforge.jexcelapi:jxl:2.6.12'
     implementation 'com.loopj.android:android-async-http:1.4.10'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    //Mapbox dependencies
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:6.0.1'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.5.0'
 
 }
