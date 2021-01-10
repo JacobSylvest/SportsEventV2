@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -20,6 +21,8 @@ import com.mapbox.android.core.location.LocationEnginePriority;
 import com.mapbox.android.core.location.LocationEngineProvider;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
+import com.mapbox.api.directions.v5.models.DirectionsResponse;
+import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.Marker;
@@ -32,10 +35,16 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerPlugin;
 import com.mapbox.mapboxsdk.plugins.locationlayer.modes.CameraMode;
 import com.mapbox.mapboxsdk.plugins.locationlayer.modes.RenderMode;
+import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
+import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
+import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
+import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 
 import java.util.List;
 
-
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationEngineListener,
@@ -51,6 +60,9 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
     private Point originPosition;
     private Point destinationPosition;
     private Marker destinationMarker;
+    private NavigationMapRoute navigationMapRoute;
+    private static final String TAG = "MapboxMain";
+
 
 
     @Override
@@ -64,9 +76,15 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
         mapView.getMapAsync(this);
 
         startButton.setOnClickListener(new View.OnClickListener() {
+            //TODO Hvis det ønskes at simulere en rute, ændres .shouldSimulateRoute til true
             @Override
             public void onClick(View v) {
-                // Launch navigation ui
+                NavigationLauncherOptions options = NavigationLauncherOptions.builder()
+                        .origin(originPosition)
+                        .destination(destinationPosition)
+                        .shouldSimulateRoute(false)
+                        .build();
+                NavigationLauncher.startNavigation(MapboxMain.this, options);
             }
         });
 
@@ -147,14 +165,55 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
 
     @Override
     public void onMapClick(@NonNull LatLng point) {
+
+        if(destinationMarker != null) {
+            map.removeMarker(destinationMarker);
+        }
+
         destinationMarker = map.addMarker(new MarkerOptions().position(point));
 
         destinationPosition = Point.fromLngLat(point.getLongitude(), point.getLatitude());
         originPosition = Point.fromLngLat(originLocation.getLongitude(), originLocation.getLatitude());
+        getRoute(originPosition, destinationPosition);
 
         startButton.setEnabled(true);
         startButton.setBackgroundResource(R.color.mapboxBlue);
     }
+
+    private void getRoute(Point origin, Point destination) {
+        NavigationRoute.builder()
+                .accessToken(Mapbox.getAccessToken())
+                .origin(origin)
+                .destination(destination)
+                .build()
+                .getRoute(new Callback<DirectionsResponse>() {
+                    @Override
+                    public void onResponse(Call<DirectionsResponse> call, Response<DirectionsResponse> response) {
+                        if (response.body() == null) {
+                            Log.e(TAG, "Ingen ruter fundet, se efter om du er tilmeldt!");
+                            return;
+                        }else if (response.body().routes().size() == 0) {
+                            Log.e(TAG, "Ingen ruter fundet!");
+                            return;
+                        }
+
+                        DirectionsRoute currentRoute = response.body().routes().get(0);
+
+                        if (navigationMapRoute != null) {
+                            navigationMapRoute.removeRoute();
+                        }else {
+                            navigationMapRoute = new NavigationMapRoute(null, mapView, map);
+                        }
+                        navigationMapRoute.addRoute(currentRoute);
+                    }
+
+                    @Override
+                    public void onFailure(Call<DirectionsResponse> call, Throwable t) {
+                        Log.e(TAG, "Error:" + t.getMessage());
+                    }
+                });
+    }
+
 
     @Override
     @SuppressWarnings("MissingPermission")
