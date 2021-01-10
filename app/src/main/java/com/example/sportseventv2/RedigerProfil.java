@@ -6,32 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.security.PrivateKey;
-
-public class Profil extends TopMenu {
-
-    private Button button;
+public class RedigerProfil extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profil);
-
-        button = findViewById(R.id.rediger_profil);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openRedigerProfil();
-
-            }
-        });
-
-        //initialiserer og tilknytter/tildeler variabler
+        setContentView(R.layout.activity_rediger_profil);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -39,7 +22,6 @@ public class Profil extends TopMenu {
 
         bottomNavigationView.setSelectedItemId(R.id.profil);
 
-        //Laver itemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -54,17 +36,16 @@ public class Profil extends TopMenu {
                         startActivity(new Intent(getApplicationContext()
                                 , Løb.class));
                         overridePendingTransition(0, 0);
+                        return true;
 
                     case R.id.profil:
+                        startActivity(new Intent(getApplicationContext()
+                        , Profil.class));
                         return true;
 
                 }
                 return false;
             }
         });
-    }
-    public void openRedigerProfil(){
-        Intent intent = new Intent(this, RedigerProfil.class);
-        startActivity(intent);
     }
 }
