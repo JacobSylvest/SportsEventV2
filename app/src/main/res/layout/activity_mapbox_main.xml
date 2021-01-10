@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/startButton"
+    android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".model.MapboxMain">
+    tools:context=".model.MapboxMain"
+    tools:layout_editor_absoluteY="25dp">
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
@@ -14,38 +15,44 @@
         app:mapbox_cameraTargetLat="37.7749"
         app:mapbox_cameraTargetLng="-122.4194"
         app:mapbox_cameraZoom="12"
-        app:mapbox_styleUrl="mapbox://styles/mapbox/streets-v10" />
+        app:mapbox_styleUrl="mapbox://styles/mapbox/streets-v10">
 
 
-    <!-- TODO husk at ændre navnet på knappen  -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_navigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                app:itemBackground="@color/temafarve"
+                app:itemIconTint="@drawable/selector"
+                app:itemTextColor="@drawable/selector"
+                app:menu="@menu/menu_navigation" />
+
+        </RelativeLayout>
+    </com.mapbox.mapboxsdk.maps.MapView>
+
     <Button
-        android:id="@+id/button"
+        android:id="@+id/startRute"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:paddingBottom="40dp"
-        android:background="@color/temafarve"
-        android:text="Start Navigation"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="530dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="40dp"
+        android:enabled="false"
+        android:text="@string/startRute"
         android:textColor="@color/mapboxWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:itemBackground="@color/temafarve"
-            app:itemIconTint="@drawable/selector"
-            app:itemTextColor="@drawable/selector"
-            app:menu="@menu/menu_navigation" />
-    </RelativeLayout>
+    <!-- TODO husk at ændre navnet på knappen  -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

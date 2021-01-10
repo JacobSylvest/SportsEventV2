@@ -1,12 +1,12 @@
 package com.example.sportseventv2.model;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.sportseventv2.Kalender;
@@ -20,7 +20,10 @@ import com.mapbox.android.core.location.LocationEnginePriority;
 import com.mapbox.android.core.location.LocationEngineProvider;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
+import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.Marker;
+import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
@@ -32,14 +35,22 @@ import com.mapbox.mapboxsdk.plugins.locationlayer.modes.RenderMode;
 
 import java.util.List;
 
-public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationEngineListener, PermissionsListener {
+
+
+
+public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationEngineListener,
+        PermissionsListener, MapboxMap.OnMapClickListener {
 
     private MapView mapView;
     private MapboxMap map;
+    private View startButton;
     private PermissionsManager permissionsManager;
     private LocationEngine locationEngine;
     private LocationLayerPlugin locationLayerPlugin;
     private Location originLocation;
+    private Point originPosition;
+    private Point destinationPosition;
+    private Marker destinationMarker;
 
 
     @Override
@@ -48,8 +59,16 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
         Mapbox.getInstance(this, getString(R.string.access_token));
         setContentView(R.layout.activity_mapbox_main);
         mapView = (MapView) findViewById(R.id.mapView);
+        startButton = findViewById(R.id.startRute);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Launch navigation ui
+            }
+        });
 
         //initialiserer og tilknytter/tildeler variabler
 
@@ -86,6 +105,7 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
     @Override
     public void onMapReady(MapboxMap mapboxMap) {
         map = mapboxMap;
+        map.addOnMapClickListener(this);
         enableLocation();
     }
 
@@ -124,6 +144,18 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),
                 location.getLongitude()), 70.0));
     }
+
+    @Override
+    public void onMapClick(@NonNull LatLng point) {
+        destinationMarker = map.addMarker(new MarkerOptions().position(point));
+
+        destinationPosition = Point.fromLngLat(point.getLongitude(), point.getLatitude());
+        originPosition = Point.fromLngLat(originLocation.getLongitude(), originLocation.getLatitude());
+
+        startButton.setEnabled(true);
+        startButton.setBackgroundResource(R.color.mapboxBlue);
+    }
+
     @Override
     @SuppressWarnings("MissingPermission")
     public void onConnected() {
@@ -212,5 +244,4 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
         }
         mapView.onDestroy();
     }
-
 }
