@@ -1,17 +1,20 @@
 package com.example.sportseventv2.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sportseventv2.Event;
 import com.example.sportseventv2.R;
 import com.squareup.picasso.Picasso;
 
@@ -19,9 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
-    private static final String TAG = "TAG";
+    private static final String TAG = "EventAdapter";
     LayoutInflater inflater;
     List<String> titles, descriptions, imageUrls;
+    Context context;
+
 
     public EventAdapter(Context context, List<String> titles, List<String> descriptions, List<String> imageUrls){
         this.inflater = LayoutInflater.from(context);
@@ -29,13 +34,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         this.descriptions = descriptions;
         this.imageUrls = imageUrls;
 
-        Log.d(TAG, "Adapter: " + titles);
+        Log.d(TAG, "Adapter: " + titles); // Bruges til debugging
     }
 
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d(TAG, "onCreateViewHolder: started");
         View view = inflater.inflate(R.layout.row, parent, false);
         return new ViewHolder(view);
     }
@@ -50,6 +56,19 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         holder.content.setText(desc);
         //bruger picasso til at downloade event billede
         Picasso.get().load(img).into(holder.listImg);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: der er trykket på et Event");
+                Intent intent = new Intent(context, Event.class);
+                intent.putExtra("image_event",imageUrls.get(position));
+                intent.putExtra("title_event",titles.get(position));
+                intent.putExtra("description_event",descriptions.get(position));
+                context.startActivity(intent);
+                System.out.println("der er trykket");
+            }
+        });
     }
 
     @Override
