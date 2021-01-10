@@ -47,6 +47,7 @@ public class Løb extends TopMenu {
                         return true;
 
                     case R.id.løb:
+                        return true;
 
                     case R.id.profil:
                         startActivity(new Intent(getApplicationContext()

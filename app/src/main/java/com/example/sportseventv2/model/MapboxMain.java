@@ -3,15 +3,45 @@ package com.example.sportseventv2.model;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.example.sportseventv2.Kalender;
+import com.example.sportseventv2.Profil;
 import com.example.sportseventv2.R;
+import com.example.sportseventv2.TopMenu;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.mapbox.android.core.location.LocationEngine;
+import com.mapbox.android.core.location.LocationEngineListener;
+import com.mapbox.android.core.location.LocationEnginePriority;
+import com.mapbox.android.core.location.LocationEngineProvider;
+import com.mapbox.android.core.permissions.PermissionsListener;
+import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
+import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
+import com.mapbox.mapboxsdk.maps.MapboxMap;
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerPlugin;
+import com.mapbox.mapboxsdk.plugins.locationlayer.modes.CameraMode;
+import com.mapbox.mapboxsdk.plugins.locationlayer.modes.RenderMode;
 
-public class MapboxMain extends AppCompatActivity {
+import java.util.List;
+
+public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationEngineListener, PermissionsListener {
 
     private MapView mapView;
+    private MapboxMap map;
+    private PermissionsManager permissionsManager;
+    private LocationEngine locationEngine;
+    private LocationLayerPlugin locationLayerPlugin;
+    private Location originLocation;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,11 +49,122 @@ public class MapboxMain extends AppCompatActivity {
         setContentView(R.layout.activity_mapbox_main);
         mapView = (MapView) findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
+
+        //initialiserer og tilknytter/tildeler variabler
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //sætter Løb som hjemmeskærm:
+        bottomNavigationView.setSelectedItemId(R.id.løb);
+
+        //Laver itemSelectedListener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.kalender:
+                        startActivity(new Intent(getApplicationContext()
+                                , Kalender.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.løb:
+                        return true;
+
+                    case R.id.profil:
+                        startActivity(new Intent(getApplicationContext()
+                                , Profil.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                }
+                return false;
+            }
+        });
+    }
+    @Override
+    public void onMapReady(MapboxMap mapboxMap) {
+        map = mapboxMap;
+        enableLocation();
+    }
+
+    private void enableLocation(){
+        if(PermissionsManager.areLocationPermissionsGranted(this)){
+            initializeLocationEngine();
+            initializeLocationLayer();
+        } else {
+            permissionsManager = new PermissionsManager(this);
+            permissionsManager.requestLocationPermissions(this);
+        }
+    }
+    @SuppressWarnings("MissingPermission")
+    private void initializeLocationEngine() {
+        locationEngine = new LocationEngineProvider(this).obtainBestLocationEngineAvailable();
+        locationEngine.setPriority(LocationEnginePriority.HIGH_ACCURACY);
+        locationEngine.activate();
+
+        Location lastLocation = locationEngine.getLastLocation();
+        if(lastLocation != null) {
+            originLocation = lastLocation;
+            setCameraPosition(lastLocation);
+        } else {
+            locationEngine.addLocationEngineListener(this);
+        }
+    }
+    @SuppressWarnings("MissingPermission")
+    private void initializeLocationLayer() {
+        locationLayerPlugin = new LocationLayerPlugin(mapView, map, locationEngine);
+        locationLayerPlugin.setLocationLayerEnabled(true);
+        locationLayerPlugin.setCameraMode(CameraMode.TRACKING);
+        locationLayerPlugin.setRenderMode(RenderMode.NORMAL);
+    }
+
+    private void setCameraPosition(Location location){
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),
+                location.getLongitude()), 13.0));
+    }
+    @Override
+    @SuppressWarnings("MissingPermission")
+    public void onConnected() {
+        locationEngine.requestLocationUpdates();
     }
 
     @Override
+    public void onLocationChanged(Location location) {
+        if(location != null) {
+            originLocation = location;
+            setCameraPosition(location);
+        }
+    }
+
+    @Override
+    public void onExplanationNeeded(List<String> permissionsToExplain) {
+        Toast.makeText(MapboxMain.this, "Prøv igen", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPermissionResult(boolean granted) {
+        if(granted){
+            enableLocation();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    @SuppressWarnings("MissingPermission")
     protected void onStart() {
         super.onStart();
+        if(locationEngine != null) {
+            locationEngine.requestLocationUpdates();
+        }
+        if(locationLayerPlugin != null) {
+            locationLayerPlugin.onStart();
+        }
         mapView.onStart();
     }
 
@@ -42,6 +183,12 @@ public class MapboxMain extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        if(locationEngine != null) {
+            locationEngine.removeLocationUpdates();
+        }
+        if(locationLayerPlugin != null) {
+            locationLayerPlugin.onStop();
+        }
         mapView.onStop();
     }
 
@@ -60,6 +207,10 @@ public class MapboxMain extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (locationEngine != null) {
+            locationEngine.deactivate();
+        }
         mapView.onDestroy();
     }
+
 }
