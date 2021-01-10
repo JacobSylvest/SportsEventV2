@@ -26,4 +26,5 @@
     <string name="reg">Registrer</string>
     <string name="all_r_user">Allerede bruger? Log ind her</string>
     <string name="telefonnummer">Telefonnummer</string>
+    <string name="brugernavn">Brugernavn</string>
 </resources>
