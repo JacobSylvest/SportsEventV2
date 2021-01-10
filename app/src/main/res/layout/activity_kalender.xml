@@ -11,6 +11,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventRecycler"
         android:layout_width="match_parent"
+        android:paddingBottom="40dp"
         android:layout_height="wrap_content" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -24,3 +25,4 @@
         app:menu="@menu/menu_navigation" />
 
 </RelativeLayout>
+

@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profil">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#fff">
-
+    tools:context=".Profil"
+    android:background="#fff"
+    android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:background="#2F5597"
             android:padding="20dp">
 
             <ImageView
                 android:id="@+id/profil_logo"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerVertical="true"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:src="@drawable/profile_white"
@@ -35,7 +30,7 @@
                 android:id="@+id/full_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="15dp"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/profil_logo"
                 android:fontFamily="sans-serif-condensed"
@@ -63,7 +58,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-100dp"
+            android:layout_marginTop="-170dp"
             android:padding="20dp">
 
             <com.google.android.material.card.MaterialCardView
@@ -153,7 +148,59 @@
             </com.google.android.material.card.MaterialCardView>
 
 
+
         </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-40dp"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="0dp"
+            android:layout_height="125dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_chech_calendar"
+            android:text="Tilmeldte løb"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="0dp"
+            android:layout_height="125dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_edit_profile"
+            android:text="Rediger profil"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/temafarve"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/menu_navigation" />
+</RelativeLayout>
+</LinearLayout>
+
+    <!-- DETTE ER LOGIKKEN TIL KNAPPERNE DER SKAL IND I "REDIGER PROFIL"
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -232,19 +279,13 @@
 
         </LinearLayout>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:itemBackground="@color/temafarve"
-            app:itemIconTint="@drawable/selector"
-            app:itemTextColor="@drawable/selector"
-            app:menu="@menu/menu_navigation" />
 
-
-    </LinearLayout>
-
-
-
-</ScrollView>
+    <Button
+        android:id="@+id/upload_profiilbillede"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload profilbillede"
+        android:background="#00000000"
+        android:textColor="#000"
+        android:textSize="12sp"/>
+    /-->
