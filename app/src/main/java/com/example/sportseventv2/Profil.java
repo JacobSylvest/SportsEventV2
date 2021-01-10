@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.security.PrivateKey;
 
 public class Profil extends TopMenu {
+
+    TextView fullName, username;
 
     private Button button;
 
@@ -62,7 +65,27 @@ public class Profil extends TopMenu {
                 return false;
             }
         });
+
+        //Hooks
+        fullName = findViewById(R.id.full_name);
+        username = findViewById(R.id.user_name);
+
+        showAllUserData();
+
     }
+
+    private void showAllUserData() {
+        Intent intent = getIntent();
+        String user_username = intent.getStringExtra("username");
+        String user_name = intent.getStringExtra("name");
+
+        fullName.setText(user_name);
+        username.setText(user_username);
+
+
+
+    }
+
     public void openRedigerProfil(){
         Intent intent = new Intent(this, RedigerProfil.class);
         startActivity(intent);

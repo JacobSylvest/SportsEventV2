@@ -5,8 +5,6 @@ public class UserHelperClass {
 
 
 
-    public UserHelperClass() {
-    }
 
 
     public UserHelperClass(String name, String emial, String phoneNo, String username, String password) {

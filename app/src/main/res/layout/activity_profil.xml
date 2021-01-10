@@ -35,7 +35,6 @@
                 android:layout_toRightOf="@+id/profil_logo"
                 android:fontFamily="sans-serif-condensed"
                 android:includeFontPadding="false"
-                android:text="Jacob Sylvest Mortensen"
                 android:textColor="#000"
                 android:textSize="20sp" />
 
@@ -48,7 +47,6 @@
                 android:layout_toRightOf="@+id/profil_logo"
                 android:fontFamily="sans-serif-condensed"
                 android:includeFontPadding="false"
-                android:text="Jacob_Sylvest"
                 android:textColor="#000"
                 android:textSize="14sp" />
 
