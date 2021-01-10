@@ -52,9 +52,12 @@ public class Login extends AppCompatActivity {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(isUser)
                 openBottomNavigation();
             }
         });
+
+
 
 
         callSignUp.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +83,7 @@ public class Login extends AppCompatActivity {
 
     private Boolean validateUsername(){
         String val = username.getEditText().getText().toString();
+
         if (val.isEmpty()){
             username.setError("Feltet skal udfyldes");
             return false;
@@ -93,6 +97,7 @@ public class Login extends AppCompatActivity {
 
     private Boolean validatePassword() {
         String val = password.getEditText().getText().toString();
+
         if (val.isEmpty()){
             password.setError("Feltet skal udfyldes");
             return false;
@@ -117,50 +122,46 @@ public class Login extends AppCompatActivity {
 
     private void isUser() {
 
+        username.setError(null);
+        username.setErrorEnabled(false);
+
         String userEnteredUsername = username.getEditText().getText().toString().trim();
         String userEnteredPassword = password.getEditText().getText().toString().trim();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+
         Query checkUser = reference.orderByChild("username").equalTo(userEnteredUsername);
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                username.setError(null);
+                username.setErrorEnabled(false);
+
                 if(dataSnapshot.exists()){
-
-                    username.setError(null);
-                    username.setErrorEnabled(false);
-
-                    String passwordFromDB = dataSnapshot.child(userEnteredUsername).child("password").getValue(String.class);
-
-                    if (passwordFromDB.equals(userEnteredPassword)){
-
-                        username.setError(null);
-                        username.setErrorEnabled(false);
-
+                    String usernameFromDB = dataSnapshot.child(userEnteredUsername).child("username").getValue(String.class);
+                    if(usernameFromDB.equals(userEnteredUsername)){
+                        //String emailFromDB = dataSnapshot.child(userEnteredUsername).child("emial").getValue(String.class);
                         String nameFromDB = dataSnapshot.child(userEnteredUsername).child("name").getValue(String.class);
-                        String usernameFromDB = dataSnapshot.child(userEnteredUsername).child("username").getValue(String.class);
-                        String phoneNoFromDB = dataSnapshot.child(userEnteredUsername).child("phoneNo").getValue(String.class);
-                        String emailFromDB = dataSnapshot.child(userEnteredUsername).child("email").getValue(String.class);
+                        //String passwordFromDB = dataSnapshot.child(userEnteredUsername).child("password").getValue(String.class);
+                        //String phoneNoFromDB = dataSnapshot.child(userEnteredUsername).child("phoneNo").getValue(String.class);
 
                         Intent intent = new Intent(getApplicationContext(),Profil.class);
-                        intent.putExtra("name",nameFromDB);
+                        intent.putExtra("name", nameFromDB);
                         intent.putExtra("username",usernameFromDB);
-                        intent.putExtra("phoneNo",phoneNoFromDB);
-                        intent.putExtra("email",emailFromDB);
-                        intent.putExtra("password",passwordFromDB);
 
                         startActivity(intent);
                     }
-                    else{
+                    else {
                         password.setError("Forkert password");
                         password.requestFocus();
                     }
                 }
                 else{
-                    username.setError("Bruger findes ikke");
+                    username.setError("Bruger findes ikkle");
                     username.requestFocus();
                 }
+
             }
 
             @Override
@@ -168,14 +169,17 @@ public class Login extends AppCompatActivity {
 
             }
         });
+
     }
 
-    /**
-     * Metode til at åbne løb.class
-     */
+
+
+     //Metode til at åbne løb.class
+
     public void openBottomNavigation(){
         Intent intent = new Intent(this, Løb.class);
         startActivity(intent);
 
     }
+
 }
