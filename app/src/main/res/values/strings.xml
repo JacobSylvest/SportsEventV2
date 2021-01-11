@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SportsEvent</string>
 
-    <!--Strings til overskrifter -->
+    <!--Strings til overskrifter/labels -->
     <string name="head_login">Login</string>
     <string name="head_loeb">Løb</string>
     <string name="head_kalender">Kalender</string>
@@ -9,6 +9,8 @@
     <string name="head_profil">Profil</string>
     <string name="head_kontakt">Kontakt</string>
     <string name="head_registrer">Registrering</string>
+    <string name="head_tildmeldte">Tilmeldte Løb</string>
+    <string name="head_event">Event</string>
 
     <!--Strings til login -->
     <string name="login_velkommen">Velkommen</string>

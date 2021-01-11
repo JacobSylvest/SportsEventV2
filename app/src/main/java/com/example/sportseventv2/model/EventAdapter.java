@@ -2,13 +2,11 @@ package com.example.sportseventv2.model;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +16,6 @@ import com.example.sportseventv2.Event;
 import com.example.sportseventv2.R;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
@@ -83,6 +80,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            Log.d(TAG, "ViewHolder: Billeder og tekst sat ind i cardview");
             listImg = itemView.findViewById(R.id.eventImage);
             title = itemView.findViewById(R.id.eventTitle);
             content = itemView.findViewById(R.id.eventText);

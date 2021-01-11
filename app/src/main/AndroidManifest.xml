@@ -13,10 +13,12 @@
         android:theme="@style/Theme.SportsEventV2">
         <activity
             android:name=".TilmeldteLoeb"
-            android:theme="@style/Theme.ActionBar" />
+            android:theme="@style/Theme.ActionBar"
+            android:label="@string/head_tildmeldte"/>
         <activity
             android:name=".Event"
-            android:theme="@style/Theme.ActionBar" />
+            android:theme="@style/Theme.ActionBar"
+            android:label="@string/head_event"/>
         <activity
             android:name=".RedigerProfil"
             android:theme="@style/Theme.ActionBar" />

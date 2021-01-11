@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Event"
-    android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
+    android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+    android:padding="20dp">
 
 
     <ImageView
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:id="@+id/eventImage2"
-        android:src="@drawable/ic_date"/>
+        android:src="@drawable/ic_date" />
 
     <TextView
         android:layout_width="match_parent"
@@ -25,7 +26,8 @@
         android:layout_toRightOf="@id/eventImage2"
         android:layout_toEndOf="@id/eventImage2"
         android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp" />
+        android:layout_marginStart="10dp"
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,5 +56,5 @@
         android:textAlignment="center"
         android:textColor="@color/green"
         android:layout_below="@id/eventImage2"
-        android:paddingTop="10dp"/>
+        android:paddingTop="30dp"/>
 </RelativeLayout>
