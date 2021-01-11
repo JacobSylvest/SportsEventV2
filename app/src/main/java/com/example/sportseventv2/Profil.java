@@ -11,11 +11,11 @@ import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Profil extends TopBundMenu {
+public class Profil extends TopBundMenu implements View.OnClickListener {
 
     TextView fullName, username;
 
-    private Button button;
+    private Button button, tilmeldte_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +23,10 @@ public class Profil extends TopBundMenu {
         setContentView(R.layout.activity_profil);
 
         button = findViewById(R.id.rediger_profil);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openRedigerProfil();
-            }
-        });
+        button.setOnClickListener(this);
+
+        tilmeldte_btn = findViewById(R.id.tilmeldte_løb);
+        tilmeldte_btn.setOnClickListener(this);
 
         //Hooks
         fullName = findViewById(R.id.full_name);
@@ -50,5 +48,19 @@ public class Profil extends TopBundMenu {
     public void openRedigerProfil(){
         Intent intent = new Intent(this, RedigerProfil.class);
         startActivity(intent);
+    }
+    public void openTilmeldteLoeb (){
+        Intent intent = new Intent(this, TilmeldteLoeb.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == button){
+            openRedigerProfil();
+        }
+        if (v == tilmeldte_btn){
+            openTilmeldteLoeb();
+        }
     }
 }

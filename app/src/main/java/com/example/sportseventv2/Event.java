@@ -27,8 +27,9 @@ public class Event extends TopBundMenu implements View.OnClickListener{
 
         tilmeld_btn = findViewById(R.id.tilmeld_btn);
         tilmeld_btn.setOnClickListener(this);
-
+        showNavKalender();
         getIncomingIntent();
+
     }
 
     /**
