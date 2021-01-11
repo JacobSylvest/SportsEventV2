@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Profil extends TopMenu implements View.OnClickListener {
 
+    private static final String TAG = "Profil";
     TextView fullName, username;
 
     private Button redigerBtn, tilmeldte_loeb;
@@ -80,6 +82,7 @@ public class Profil extends TopMenu implements View.OnClickListener {
     }
 
     public void openRedigerProfil(){
+        Log.d(TAG, "openRedigerProfil: started.");
         Intent intent = new Intent(this, RedigerProfil.class);
         startActivity(intent);
     }

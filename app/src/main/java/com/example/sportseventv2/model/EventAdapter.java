@@ -59,16 +59,19 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         //bruger picasso til at downloade event billede
         Picasso.get().load(img).into(holder.listImg);
 
+        /**
+         * Clicklistener til styring af tryk på events i kalender.
+         */
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: der er trykket på et Event");
 
                 Intent intent = new Intent(mContext, Event.class);
-                intent.putExtra("image_event",imageUrls.get(position));
-                intent.putExtra("title_event",titles.get(position));
-                intent.putExtra("description_event",descriptions.get(position));
-                mContext.startActivity(intent);
+                intent.putExtra("image_event",imageUrls.get(position));//Tilføjer billede info
+                intent.putExtra("title_event",titles.get(position));//tilføjer event title
+                intent.putExtra("description_event",descriptions.get(position));// tilføjer event tekst
+                mContext.startActivity(intent);//starter event activitet + klasse
             }
         });
     }
@@ -78,6 +81,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         return titles.size();
     }
 
+    /**
+     * Metode der smider billeder og tekst ind i cardview.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView listImg;
         TextView title,content;
