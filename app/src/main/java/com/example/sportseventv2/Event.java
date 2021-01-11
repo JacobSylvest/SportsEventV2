@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso;
 /**
  * Viser et Event og gør det muligt at tilmelde sig Eventet.
  */
-public class Event extends TopMenu implements View.OnClickListener{
+public class Event extends TopBundMenu implements View.OnClickListener{
 
     private static final String TAG = "Event";
     Button tilmeld_btn;
