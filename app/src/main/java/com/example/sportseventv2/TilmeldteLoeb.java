@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TilmeldteLoeb extends TopMenu {
+public class TilmeldteLoeb extends TopBundMenu {
 
     private static final String TAG = "TilmeldteLøb.";
     TextView fullName, username;
