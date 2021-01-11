@@ -60,7 +60,7 @@ public class Event extends TopMenu {
     }
 
     public void tilmeldLoeb(){
-        //TODO skal tilføje løb til Tilmeldte løb i minprofil
+        //TODO skal tilføje/sende løb til Tilmeldte løb i minprofil
         Toast.makeText(getApplicationContext(),"Tilmeldt: "+getIntent().getStringExtra("title_event"), Toast.LENGTH_SHORT).show();
     }
 }
