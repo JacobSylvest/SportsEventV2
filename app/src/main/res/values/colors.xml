@@ -11,4 +11,6 @@
     <color name="background_color">#2F5597</color>
     <color name="temafarve">#2F5597</color>
     <color name="green">#00CC00</color>
+    <color name="transparent">#CCFFFFFF</color>
+
 </resources>
