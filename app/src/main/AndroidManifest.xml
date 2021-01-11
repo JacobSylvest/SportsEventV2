@@ -11,7 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsEventV2">
-        <activity android:name=".RedigerProfil"></activity>
+        <activity
+            android:name=".TilmeldteLoeb"
+            android:theme="@style/Theme.ActionBar"
+            android:label="@string/head_tildmeldte"/>
+        <activity
+            android:name=".Event"
+            android:theme="@style/Theme.ActionBar"
+            android:label="@string/head_event"/>
+        <activity
+            android:name=".RedigerProfil"
+            android:theme="@style/Theme.ActionBar" />
         <activity
             android:name=".TopKontakt"
             android:label="@string/head_kontakt"
