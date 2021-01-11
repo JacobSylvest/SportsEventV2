@@ -1,5 +1,6 @@
 package com.example.sportseventv2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,10 +11,14 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+/**
+ * Viser et Event og gør det muligt at tilmelde sig Eventet.
+ */
 public class Event extends TopMenu {
 
     private static final String TAG = "Event";
     Button tilmeld_btn;
+    String imageUrl,eTitle,description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,20 +38,20 @@ public class Event extends TopMenu {
     }
 
     /**
-     * Checker om der bliver sendt intents & modtager hvis der kommer nogle
+     * Checker om der bliver sendt intents & modtager hvis der kommer nogle.
      */
     private void getIncomingIntent(){
+        Log.d(TAG, "getIncomingIntent: checker om der event info(billede, titel, beskrivelse");
         if (getIntent().hasExtra("image_event")&&getIntent().hasExtra("title_event")&&getIntent().hasExtra("description_event")){
-            String imageUrl = getIntent().getStringExtra("image_event");
-            String eTitle = getIntent().getStringExtra("title_event");
-            String description = getIntent().getStringExtra("description_event");
 
-            System.out.println("dette er blevet hentet: "+imageUrl);
+            imageUrl = getIntent().getStringExtra("image_event");
+            eTitle = getIntent().getStringExtra("title_event");
+            description = getIntent().getStringExtra("description_event");
             setIntent(imageUrl,eTitle,description);
+
         }
     }
     private void setIntent(String imageUrl,String title, String description){
-
         TextView event_title = findViewById(R.id.eventTitle2);
         event_title.setText(title);
         TextView event_description = findViewById(R.id.eventText2);
@@ -57,8 +62,10 @@ public class Event extends TopMenu {
         Picasso.get().load(imageUrl).into(image);
     }
 
-    public void tilmeldLoeb(){
+    private void tilmeldLoeb(){
+        Log.d(TAG, "tilmeldLoeb: der er trykket på tilmeld løb.");
         //TODO skal tilføje/sende løb til Tilmeldte løb i minprofil
         Toast.makeText(getApplicationContext(),"Tilmeldt: "+getIntent().getStringExtra("title_event"), Toast.LENGTH_SHORT).show();
     }
+
 }

@@ -53,12 +53,13 @@
 
     </RelativeLayout>
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tilmeldtRecycler"
         android:layout_width="match_parent"
+        android:paddingBottom="40dp"
         android:layout_height="wrap_content"
-        android:id="@+id/tilmeldt_list"
-        android:layout_below="@id/profile_top"
-        android:paddingBottom="40dp"/>
+        android:layout_below="@id/profile_top"/>
+
 
 
 </RelativeLayout>

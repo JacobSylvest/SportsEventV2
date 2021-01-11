@@ -18,6 +18,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+/**
+ * Adapter til at læse tekst og billeder fra  online excel fil.
+ * Smider tekst og billeder i en viewholder så recycler view kan bruge det.
+ */
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
     private static final String TAG = "EventAdapter";
     LayoutInflater inflater;

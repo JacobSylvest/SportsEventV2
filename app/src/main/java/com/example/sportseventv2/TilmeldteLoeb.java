@@ -1,13 +1,24 @@
 package com.example.sportseventv2;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.sportseventv2.model.EventAdapter;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class TilmeldteLoeb extends TopMenu {
 
+    private static final String TAG = "TilmeldteLøb.";
     TextView fullName, username;
-    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +29,6 @@ public class TilmeldteLoeb extends TopMenu {
         fullName = findViewById(R.id.full_name2);
         username = findViewById(R.id.user_name2);
 
-        listView = findViewById(R.id.tilmeldt_list);
-
-
     }
+
 }
