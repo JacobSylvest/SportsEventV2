@@ -1,5 +1,6 @@
 package com.example.sportseventv2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,7 +41,7 @@ public class TopBundMenu extends AppCompatActivity {
         //initialiserer og tilknytter/tildeler variabler
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        //sætter Løb som hjemmeskærm:
+        //sætter kalender:
         bottomNavigationView.setSelectedItemId(R.id.kalender);
 
         //Laver itemSelectedListener
@@ -104,8 +105,7 @@ public class TopBundMenu extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        //sætter Løb som hjemmeskærm:
-
+        //sætter profil:
         bottomNavigationView.setSelectedItemId(R.id.profil);
 
         //Laver itemSelectedListener

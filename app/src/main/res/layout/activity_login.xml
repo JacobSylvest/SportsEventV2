@@ -64,8 +64,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:transitionName="brugernavn_slot"
-                android:background="#CCFFFFFF"
-                android:textColor="#fff" />
+                android:background="@color/transparent"
+                android:textColor="@color/black"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,8 +83,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:transitionName="password_slot"
-                android:background="#CCFFFFFF"
-                android:textColor="#fff" />
+                android:background="@color/transparent"
+                android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
