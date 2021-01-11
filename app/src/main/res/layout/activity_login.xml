@@ -65,7 +65,8 @@
                 android:inputType="text"
                 android:transitionName="brugernavn_slot"
                 android:background="#CCFFFFFF"
-                android:textColor="#fff" />
+                android:textColor="@color/black"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,7 +84,7 @@
                 android:inputType="textPassword"
                 android:transitionName="password_slot"
                 android:background="#CCFFFFFF"
-                android:textColor="#fff" />
+                android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
