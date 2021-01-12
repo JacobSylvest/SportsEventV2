@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,10 +34,15 @@ public class TopBundMenu extends AppCompatActivity {
                 Intent intentKontakt = new Intent(this, TopKontakt.class);
                 startActivity(intentKontakt);
                 return true;
+            case R.id.item4:
+                Intent intentLogin = new Intent(this, Login.class);
+                startActivity(intentLogin);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
     void showNavKalender() {
         //initialiserer og tilknytter/tildeler variabler
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);

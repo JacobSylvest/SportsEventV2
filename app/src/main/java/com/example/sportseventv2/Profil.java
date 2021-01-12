@@ -48,6 +48,7 @@ public class Profil extends TopBundMenu implements View.OnClickListener {
     public void openRedigerProfil(){
         Intent intent = new Intent(this, RedigerProfil.class);
         startActivity(intent);
+
     }
     public void openTilmeldteLoeb (){
         Intent intent = new Intent(this, TilmeldteLoeb.class);
