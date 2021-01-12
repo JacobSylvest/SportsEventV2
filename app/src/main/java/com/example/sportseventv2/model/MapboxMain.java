@@ -75,13 +75,22 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
+        Intent intent = getIntent();
+        Double originLong = intent.getDoubleExtra("startlong", 55.50);
+        Double originLad = intent.getDoubleExtra("startlad",12.0);
+        Double destinantionLong = intent.getDoubleExtra("slutlong",55.0);
+        Double destinantionLad = intent.getDoubleExtra("slutlad",12.50);
+
+        Point start = Point.fromLngLat(originLong, originLad);
+        Point slut = Point.fromLngLat(destinantionLong, destinantionLad);
+
         startButton.setOnClickListener(new View.OnClickListener() {
             //TODO Hvis det ønskes at simulere en rute, ændres .shouldSimulateRoute til true
             @Override
             public void onClick(View v) {
                 NavigationLauncherOptions options = NavigationLauncherOptions.builder()
-                        .origin(originPosition)
-                        .destination(destinationPosition)
+                        .origin(start)
+                        .destination(slut)
                         .shouldSimulateRoute(false)
                         .build();
                 NavigationLauncher.startNavigation(MapboxMain.this, options);
@@ -119,6 +128,11 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
                 return false;
             }
         });
+
+        getRoute(start, slut);
+
+        startButton.setEnabled(true);
+        startButton.setBackgroundResource(R.color.mapboxBlue);
     }
     @Override
     public void onMapReady(MapboxMap mapboxMap) {
@@ -166,7 +180,7 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
     @Override
     public void onMapClick(@NonNull LatLng point) {
 
-        if(destinationMarker != null) {
+       /* if(destinationMarker != null) {
             map.removeMarker(destinationMarker);
         }
 
@@ -177,7 +191,7 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
         getRoute(originPosition, destinationPosition);
 
         startButton.setEnabled(true);
-        startButton.setBackgroundResource(R.color.mapboxBlue);
+        startButton.setBackgroundResource(R.color.mapboxBlue);*/
     }
 
     private void getRoute(Point origin, Point destination) {

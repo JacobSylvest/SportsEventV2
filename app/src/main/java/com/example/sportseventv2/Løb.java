@@ -14,11 +14,20 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Løb extends TopMenu {
     Button button;
+    Double startlong;
+    Double startlad;
+    Double slutlong;
+    Double slutlad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loeb);
+
+        startlong = 55.646371;
+        startlad = 12.643210;
+        slutlong = 55.563156;
+        slutlad = 12.587285;
 
         button = findViewById(R.id.knap);
         button.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +73,10 @@ public class Løb extends TopMenu {
     }
     public void openMapboxMain() {
         Intent intent = new Intent(this, MapboxMain.class);
+        intent.putExtra("startlong",startlong);
+        intent.putExtra("slutlong",slutlong);
+        intent.putExtra("startlad",startlad);
+        intent.putExtra("slutlad",slutlad);
         startActivity(intent);
     }
 }
