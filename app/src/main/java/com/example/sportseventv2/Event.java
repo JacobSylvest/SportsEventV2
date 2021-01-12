@@ -19,7 +19,7 @@ public class Event extends TopBundMenu implements View.OnClickListener{
 
     private static final String TAG = "Event";
     Button tilmeld_btn;
-    String imageUrl,eTitle,description;
+    String imageUrl,eTitle,description,eventChild;
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
@@ -43,11 +43,13 @@ public class Event extends TopBundMenu implements View.OnClickListener{
     private void getIncomingIntent(){
         Log.d(TAG, "getIncomingIntent: checker om der event info(billede, titel, beskrivelse");
         // spørger om der er
-        if (getIntent().hasExtra("image_event")&&getIntent().hasExtra("title_event")&&getIntent().hasExtra("description_event")){
+        if (getIntent().hasExtra("image_event")&&getIntent().hasExtra("title_event")
+                &&getIntent().hasExtra("description_event")&&getIntent().hasExtra("event_Child")){
 
             imageUrl = getIntent().getStringExtra("image_event");
             eTitle = getIntent().getStringExtra("title_event");
             description = getIntent().getStringExtra("description_event");
+            eventChild = getIntent().getStringExtra("event_Child");
             setIntent(imageUrl,eTitle,description);
 
         }
@@ -73,6 +75,7 @@ public class Event extends TopBundMenu implements View.OnClickListener{
 
     /**
      * Metode til tilmeld løb knappen.
+     * Tilføjer Event til databasen.
      */
     private void tilmeldLoeb(){
         Log.d(TAG, "tilmeldLoeb: der er trykket på tilmeld løb.");
@@ -81,9 +84,12 @@ public class Event extends TopBundMenu implements View.OnClickListener{
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("events");
 
-        EventHelperClass ehelperClass = new EventHelperClass(eTitle, description, imageUrl);
 
-        reference.setValue(ehelperClass);
+
+        EventHelperClass ehelperClass = new EventHelperClass(eTitle, description, imageUrl,eventChild);
+
+        // OBS Titlen må IKKE indeholde tegn eller tal - Da nedenstående linje ikke virker
+        reference.child(eventChild).setValue(ehelperClass);
     }
 
     /**

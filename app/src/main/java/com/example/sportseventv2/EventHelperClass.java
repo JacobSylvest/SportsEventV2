@@ -1,20 +1,29 @@
 package com.example.sportseventv2;
 
 public class EventHelperClass {
-    String title, description, imgUrl;
+    String eTitle, description, imgUrl,eventChild;
 
-    public EventHelperClass(String title, String description, String imgUrl) {
-        this.title = title;
+    public EventHelperClass(String eTitle, String description, String imgUrl,String eventChild) {
+        this.eTitle = eTitle;
         this.description = description;
         this.imgUrl = imgUrl;
+        this.eventChild = eventChild;
     }
 
-    public String getTitle() {
-        return title;
+    public String getEventChild() {
+        return eventChild;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setEventChild(String eventChild) {
+        this.eventChild = eventChild;
+    }
+
+    public String geteTitle() {
+        return eTitle;
+    }
+
+    public void seteTitle(String title) {
+        this.eTitle = eTitle;
     }
 
     public String getDescription() {

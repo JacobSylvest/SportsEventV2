@@ -25,7 +25,7 @@ public class Kalender extends TopBundMenu {
     EventAdapter eventAdapter;
     AsyncHttpClient client;
     Workbook workbook;
-    List<String> titles,descriptions,imageUrl;
+    List<String> titles,descriptions,imageUrl,eventChild;
     String url = "https://github.com/NikolajMorgen/SportsEvent/blob/main/file.xls?raw=true";
 
     @Override
@@ -36,13 +36,15 @@ public class Kalender extends TopBundMenu {
         titles = new ArrayList<>();
         descriptions = new ArrayList<>();
         imageUrl = new ArrayList<>();
+        eventChild = new ArrayList<>();
+
         readFromExcel();
         showNavKalender();
     }
 
     private void showData(){
         recyclerView = findViewById(R.id.eventRecycler);
-        eventAdapter = new EventAdapter(this, titles, descriptions, imageUrl);
+        eventAdapter = new EventAdapter(this, titles, descriptions, imageUrl,eventChild);
         recyclerView.setLayoutManager(new LinearLayoutManager(this)); // laver recycleren i linearLayout
         recyclerView.setAdapter(eventAdapter);
     }
@@ -68,6 +70,7 @@ public class Kalender extends TopBundMenu {
                             titles.add(row[0].getContents());
                             descriptions.add(row[1].getContents());
                             imageUrl.add(row[2].getContents());
+                            eventChild.add(row[3].getContents());
 
                         }
                         showData();
