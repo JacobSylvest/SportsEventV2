@@ -13,7 +13,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Profil extends TopBundMenu implements View.OnClickListener {
 
-    TextView fullName, username;
 
     private Button button, tilmeldte_btn;
 
@@ -28,18 +27,20 @@ public class Profil extends TopBundMenu implements View.OnClickListener {
         tilmeldte_btn = findViewById(R.id.tilmeldte_løb);
         tilmeldte_btn.setOnClickListener(this);
 
-        //Hooks
-        fullName = findViewById(R.id.full_name);
-        username = findViewById(R.id.user_name);
-
         showAllUserData();
         showNavProfil();
     }
 
+    TextView fullName, username;
     private void showAllUserData() {
+
         Intent intent = getIntent();
         String user_username = intent.getStringExtra("username");
         String user_name = intent.getStringExtra("name");
+
+        //Hooks
+        fullName = findViewById(R.id.full_name);
+        username = findViewById(R.id.user_name);
 
         fullName.setText(user_name);
         username.setText(user_username);
@@ -53,6 +54,7 @@ public class Profil extends TopBundMenu implements View.OnClickListener {
     public void openTilmeldteLoeb (){
         Intent intent = new Intent(this, TilmeldteLoeb.class);
         startActivity(intent);
+
     }
 
     @Override
