@@ -79,11 +79,11 @@ public class Event extends TopBundMenu implements View.OnClickListener{
         //TODO skal tilføje/sende løb til Tilmeldte løb i minprofil
         Toast.makeText(getApplicationContext(),"Tilmeldt: "+getIntent().getStringExtra("title_event"), Toast.LENGTH_SHORT).show();
         rootNode = FirebaseDatabase.getInstance();
-        reference = rootNode.getReference("");
+        reference = rootNode.getReference("events");
 
         EventHelperClass ehelperClass = new EventHelperClass(eTitle, description, imageUrl);
 
-        reference.child(eTitle).setValue(ehelperClass);
+        reference.setValue(ehelperClass);
     }
 
     /**
