@@ -2,14 +2,10 @@ package com.example.sportseventv2;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Profil extends TopBundMenu implements View.OnClickListener {
 
@@ -26,7 +22,6 @@ public class Profil extends TopBundMenu implements View.OnClickListener {
 
         tilmeldte_btn = findViewById(R.id.tilmeldte_løb);
         tilmeldte_btn.setOnClickListener(this);
-
 
         showAllUserData();
         showNavProfil();
