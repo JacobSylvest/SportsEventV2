@@ -26,7 +26,7 @@ public class Kalender extends TopBundMenu {
     AsyncHttpClient client;
     Workbook workbook;
     List<String> titles,descriptions,imageUrl;
-    String url = "https://github.com/NikolajMorgen/skedehans/blob/main/file.xls?raw=true";
+    String url = "https://github.com/NikolajMorgen/SportsEvent/blob/main/file.xls?raw=true";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
