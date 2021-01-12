@@ -67,7 +67,7 @@ public class SignUp extends AppCompatActivity {
         regToLogInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLogin();
+                openLoeb();
             }
         });
     }
@@ -75,8 +75,8 @@ public class SignUp extends AppCompatActivity {
     /**
      * Metode til at åbne Login.class
      */
-    public void openLogin(){
-        Intent intent = new Intent(this, Login.class);
+    public void openLoeb(){
+        Intent intent = new Intent(this, Løb.class);
         startActivity(intent);
 
     }

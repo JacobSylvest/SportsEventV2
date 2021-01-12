@@ -144,7 +144,7 @@ public class Login extends AppCompatActivity {
                         String phoneNoFromDB = dataSnapshot.child(userEnteredPassword).child("phoneNo").getValue(String.class);
                         String emailFromDB = dataSnapshot.child(userEnteredUsername).child("emial").getValue(String.class);
 
-                        Intent intent = new Intent(getApplicationContext(),Profil.class);
+                        Intent intent = new Intent(getApplicationContext(),RedigerProfil.class);
                         intent.putExtra("name", nameFromDB);
                         intent.putExtra("username",usernameFromDB);
                         intent.putExtra("emial",emailFromDB);
@@ -170,14 +170,6 @@ public class Login extends AppCompatActivity {
 
             }
         });
-
-    }
-
-     //Metode til at åbne løb.class
-
-    public void openBottomNavigation(){
-        Intent intent = new Intent(this, Løb.class);
-        startActivity(intent);
 
     }
 
