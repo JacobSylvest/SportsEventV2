@@ -13,7 +13,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class TopBundMenu extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    String userName, fullName;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -44,18 +43,6 @@ public class TopBundMenu extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    public void setUserInfo(String userName, String fullName){
-        this.userName = userName;
-        this.fullName = fullName;
-    }
-    public String getUserName(){
-        return userName;
-    }
-    public String getFullName(){
-        return fullName;
-    }
-
 
     private void initBottom(){
         //initialiserer og tilknytter/tildeler variabel
