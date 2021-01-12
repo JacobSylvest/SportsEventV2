@@ -27,6 +27,7 @@ public class Profil extends TopBundMenu implements View.OnClickListener {
         tilmeldte_btn = findViewById(R.id.tilmeldte_løb);
         tilmeldte_btn.setOnClickListener(this);
 
+
         showAllUserData();
         showNavProfil();
     }
