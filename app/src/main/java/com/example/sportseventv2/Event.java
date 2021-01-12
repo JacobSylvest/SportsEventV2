@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -18,6 +20,9 @@ public class Event extends TopBundMenu implements View.OnClickListener{
     private static final String TAG = "Event";
     Button tilmeld_btn;
     String imageUrl,eTitle,description;
+
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +78,12 @@ public class Event extends TopBundMenu implements View.OnClickListener{
         Log.d(TAG, "tilmeldLoeb: der er trykket på tilmeld løb.");
         //TODO skal tilføje/sende løb til Tilmeldte løb i minprofil
         Toast.makeText(getApplicationContext(),"Tilmeldt: "+getIntent().getStringExtra("title_event"), Toast.LENGTH_SHORT).show();
+        rootNode = FirebaseDatabase.getInstance();
+        reference = rootNode.getReference("");
+
+        EventHelperClass ehelperClass = new EventHelperClass(eTitle, description, imageUrl);
+
+        reference.child(eTitle).setValue(ehelperClass);
     }
 
     /**
