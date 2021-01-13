@@ -1,51 +1,44 @@
 package com.example.sportseventv2;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.widget.EditText;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class RedigerProfil extends AppCompatActivity {
+public class RedigerProfil extends TopBundMenu {
+
+    EditText edit_fullname, edit_password, edit_email, edit_phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rediger_profil);
+        showNavProfil();
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        edit_fullname = findViewById(R.id.full_name_edit);
+        edit_email = findViewById(R.id.email_edit);
+        edit_phone = findViewById(R.id.phone_edit);
+        edit_password = findViewById(R.id.password_edit);
 
-        //sætter Løb som hjemmeskærm:
+        getUserData();
+    }
 
-        bottomNavigationView.setSelectedItemId(R.id.profil);
+    /**
+     * Henter bruger informationer.
+     */
+    private void getUserData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);//Bruger nøgle userInfo og henter privat.
+        String full_name = sharedPreferences.getString("fullname","");//henter string med unik nøgle og sætter lig full_name
+        String email = sharedPreferences.getString("email","");
+        String phone = sharedPreferences.getString("phoneNo","");
+        String password = sharedPreferences.getString("password","");
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
-                    case R.id.kalender:
-                        startActivity(new Intent(getApplicationContext()
-                                , Kalender.class));
-                        overridePendingTransition(0, 0);
-                        return true;
+        edit_fullname.setText(full_name);
+        edit_email.setText(email);
+        edit_phone.setText(phone);
+        edit_password.setText(password);
 
-                    case R.id.løb:
-                        startActivity(new Intent(getApplicationContext()
-                                , Løb.class));
-                        overridePendingTransition(0, 0);
-                        return true;
 
-                    case R.id.profil:
-                        startActivity(new Intent(getApplicationContext()
-                        , Profil.class));
-                        return true;
-
-                }
-                return false;
-            }
-        });
     }
 }

@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -17,7 +19,10 @@ public class Event extends TopBundMenu implements View.OnClickListener{
 
     private static final String TAG = "Event";
     Button tilmeld_btn;
-    String imageUrl,eTitle,description;
+    String imageUrl,eTitle,description,eventChild;
+
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +32,9 @@ public class Event extends TopBundMenu implements View.OnClickListener{
 
         tilmeld_btn = findViewById(R.id.tilmeld_btn);
         tilmeld_btn.setOnClickListener(this);
+
         showNavKalender();
         getIncomingIntent();
-
     }
 
     /**
@@ -37,14 +42,14 @@ public class Event extends TopBundMenu implements View.OnClickListener{
      */
     private void getIncomingIntent(){
         Log.d(TAG, "getIncomingIntent: checker om der event info(billede, titel, beskrivelse");
-        // spørger om der er
-        if (getIntent().hasExtra("image_event")&&getIntent().hasExtra("title_event")&&getIntent().hasExtra("description_event")){
+        if (getIntent().hasExtra("image_event")&&getIntent().hasExtra("title_event")
+                &&getIntent().hasExtra("description_event")&&getIntent().hasExtra("event_Child")){// spørger om der er extra i intent.
 
             imageUrl = getIntent().getStringExtra("image_event");
             eTitle = getIntent().getStringExtra("title_event");
             description = getIntent().getStringExtra("description_event");
+            eventChild = getIntent().getStringExtra("event_Child");
             setIntent(imageUrl,eTitle,description);
-
         }
     }
 
@@ -60,19 +65,24 @@ public class Event extends TopBundMenu implements View.OnClickListener{
         event_title.setText(title);
         TextView event_description = findViewById(R.id.eventText2);
         event_description.setText(description);
-
         ImageView image = findViewById(R.id.eventImage2);
-        //bruger picasso til at downloade event billede
-        Picasso.get().load(imageUrl).into(image);
+        Picasso.get().load(imageUrl).into(image);//bruger picasso til at downloade event billede
     }
 
     /**
      * Metode til tilmeld løb knappen.
+     * Tilføjer Event til databasen.
      */
     private void tilmeldLoeb(){
         Log.d(TAG, "tilmeldLoeb: der er trykket på tilmeld løb.");
         //TODO skal tilføje/sende løb til Tilmeldte løb i minprofil
         Toast.makeText(getApplicationContext(),"Tilmeldt: "+getIntent().getStringExtra("title_event"), Toast.LENGTH_SHORT).show();
+        rootNode = FirebaseDatabase.getInstance();
+        reference = rootNode.getReference("events");
+
+        EventHelperClass ehelperClass = new EventHelperClass(eTitle, description, imageUrl,eventChild);
+
+        reference.child(eventChild).setValue(ehelperClass);// OBS Child må IKKE indeholde tegn eller tal - Da nedenstående linje ikke virker
     }
 
     /**

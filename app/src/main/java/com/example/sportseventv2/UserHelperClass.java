@@ -3,10 +3,6 @@ package com.example.sportseventv2;
 public class UserHelperClass {
     String name, emial, phoneNo, username, password;
 
-
-
-
-
     public UserHelperClass(String name, String emial, String phoneNo, String username, String password) {
         this.name = name;
         this.emial = emial;

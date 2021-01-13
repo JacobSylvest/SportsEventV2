@@ -25,16 +25,17 @@ import java.util.List;
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
     private static final String TAG = "EventAdapter";
     LayoutInflater inflater;
-    List<String> titles, descriptions, imageUrls;
+    List<String> titles, descriptions, imageUrls, eventChild;
     Context mContext;
 
 
-    public EventAdapter(Context context, List<String> titles, List<String> descriptions, List<String> imageUrls){
+    public EventAdapter(Context context, List<String> titles, List<String> descriptions, List<String> imageUrls, List<String> eventChild){
         mContext = context;
         this.inflater = LayoutInflater.from(context);
         this.titles = titles;
         this.descriptions = descriptions;
         this.imageUrls = imageUrls;
+        this.eventChild = eventChild;
 
         Log.d(TAG, "Adapter: " + titles); // Bruges til debugging
     }
@@ -71,6 +72,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                 intent.putExtra("image_event",imageUrls.get(position));//Tilføjer billede info
                 intent.putExtra("title_event",titles.get(position));//tilføjer event title
                 intent.putExtra("description_event",descriptions.get(position));// tilføjer event tekst
+                intent.putExtra("event_Child",eventChild.get(position));
                 mContext.startActivity(intent);//starter event activitet + klasse
             }
         });

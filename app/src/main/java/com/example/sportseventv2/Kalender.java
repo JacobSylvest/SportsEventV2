@@ -2,6 +2,8 @@ package com.example.sportseventv2;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -12,6 +14,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 import cz.msebera.android.httpclient.Header;
 import jxl.Cell;
 import jxl.Sheet;
@@ -25,8 +29,8 @@ public class Kalender extends TopBundMenu {
     EventAdapter eventAdapter;
     AsyncHttpClient client;
     Workbook workbook;
-    List<String> titles,descriptions,imageUrl;
-    String url = "https://github.com/NikolajMorgen/SportsEvent/blob/main/file.xls?raw=true";
+    List<String> titles,descriptions,imageUrl,eventChild;
+    String url = "https://github.com/NikolajMorgen/SportsEvent/blob/main/file.xls?raw=true";// stien til Excel filen.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +40,25 @@ public class Kalender extends TopBundMenu {
         titles = new ArrayList<>();
         descriptions = new ArrayList<>();
         imageUrl = new ArrayList<>();
+        eventChild = new ArrayList<>();
+
         readFromExcel();
         showNavKalender();
     }
 
+    /**
+     * Ligger event-Titler, billeder, beskrivelser og Childs ind i recyclerView gennem eventAdapter.
+     */
     private void showData(){
         recyclerView = findViewById(R.id.eventRecycler);
-        eventAdapter = new EventAdapter(this, titles, descriptions, imageUrl);
+        eventAdapter = new EventAdapter(this, titles, descriptions, imageUrl,eventChild);
         recyclerView.setLayoutManager(new LinearLayoutManager(this)); // laver recycleren i linearLayout
         recyclerView.setAdapter(eventAdapter);
     }
+
+    /**
+     * Henter Events, som er oprettet i excel filen.
+     */
     private void readFromExcel(){
         client = new AsyncHttpClient();
         client.get(url, new FileAsyncHttpResponseHandler(this) {
@@ -68,8 +81,9 @@ public class Kalender extends TopBundMenu {
                             titles.add(row[0].getContents());
                             descriptions.add(row[1].getContents());
                             imageUrl.add(row[2].getContents());
-
+                            eventChild.add(row[3].getContents());
                         }
+
                         showData();
                         Log.d("TAG", "onSuccess: "+ titles);
                     } catch (IOException e) {
@@ -81,4 +95,5 @@ public class Kalender extends TopBundMenu {
             }
         });
     }
+
 }
