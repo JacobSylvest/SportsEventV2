@@ -17,6 +17,7 @@ public class SignUp extends AppCompatActivity {
     //Variabler:
     TextInputLayout regName, regEmail, regPhoneNo, regUsername, regPassword;
     Button regButton, regToLogInButton;
+    String events = "events";
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
@@ -61,7 +62,8 @@ public class SignUp extends AppCompatActivity {
                 String username = regUsername.getEditText().getText().toString();
                 String password = regPassword.getEditText().getText().toString();
 
-                UserHelperClass helperClass = new UserHelperClass(name, email, phoneNo,username,password);
+
+                UserHelperClass helperClass = new UserHelperClass(name, email, phoneNo,username,password, events);
 
                 reference.child(username).setValue(helperClass);
 

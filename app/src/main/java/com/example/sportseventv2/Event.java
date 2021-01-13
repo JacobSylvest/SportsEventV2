@@ -1,5 +1,6 @@
 package com.example.sportseventv2;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +23,8 @@ public class Event extends TopBundMenu implements View.OnClickListener{
     String imageUrl,eTitle,description,eventChild;
 
     FirebaseDatabase rootNode;
-    DatabaseReference reference;
+    DatabaseReference reference, reference1, reference2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +79,18 @@ public class Event extends TopBundMenu implements View.OnClickListener{
         Log.d(TAG, "tilmeldLoeb: der er trykket på tilmeld løb.");
         //TODO skal tilføje/sende løb til Tilmeldte løb i minprofil
         Toast.makeText(getApplicationContext(),"Tilmeldt: "+getIntent().getStringExtra("title_event"), Toast.LENGTH_SHORT).show();
+        //
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);//Bruger nøgle userInfo og henter privat.
+        String user_name = sharedPreferences.getString("username","");
+
         rootNode = FirebaseDatabase.getInstance();
-        reference = rootNode.getReference("events");
+        reference = rootNode.getReference("users");
+        reference1 = reference.child(user_name);
+        reference2 = reference1.child("events");
 
         EventHelperClass ehelperClass = new EventHelperClass(eTitle, description, imageUrl,eventChild);
 
-        reference.child(eventChild).setValue(ehelperClass);// OBS Child må IKKE indeholde tegn eller tal - Da nedenstående linje ikke virker
+        reference2.child(eventChild).setValue(ehelperClass);// OBS Child må IKKE indeholde tegn eller tal - Da nedenstående linje ikke virker
     }
 
     /**
