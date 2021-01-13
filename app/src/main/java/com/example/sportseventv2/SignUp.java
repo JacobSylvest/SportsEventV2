@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
@@ -44,6 +45,9 @@ public class SignUp extends AppCompatActivity {
 
                 if (!validateName() | !validateEmail() | !validatephoneNo() | !validateUsername() | !validatePassword()){
                     return;
+                }
+                else{
+                    Toast.makeText(SignUp.this, "Oplysninger registreret. Gå tilbage til login side", Toast.LENGTH_LONG).show();
                 }
                 rootNode = FirebaseDatabase.getInstance();
                 reference = rootNode.getReference("users");
@@ -98,7 +102,7 @@ public class SignUp extends AppCompatActivity {
 
     private Boolean validateEmail() {
         String val = regEmail.getEditText().getText().toString();
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        String emailPattern = "[a-zA-Z0-9.-_]+@[a-z]+\\.+[a-z]+";
 
         if (val.isEmpty()){
             regEmail.setError("Feltet må ikke være tomt");
