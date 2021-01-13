@@ -26,14 +26,14 @@ public class TilmeldteLoeb extends TopBundMenu {
 
     private static final String TAG = "TilmeldteLøb.";
     TextView fullName, username;
-    String event_imageUrl,event_title,event_description;
+    String event_imageUrl,event_title,event_description, user_name;
     List<String> titles,descriptions,imageUrl,eventChild;
     ArrayList<String> eventChilds = new ArrayList<>();
 
     RecyclerView recyclerView;
     EventAdapter eventAdapter;
     FirebaseDatabase rootNode;
-    DatabaseReference reference;
+    DatabaseReference reference,reference1,reference2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,6 @@ public class TilmeldteLoeb extends TopBundMenu {
         eventChild = new ArrayList<>();
 
         showNavProfil();
-        getEventFromDB();
         getUserData();
     }
 
@@ -58,9 +57,11 @@ public class TilmeldteLoeb extends TopBundMenu {
      */
     private void getEventFromDB(){
         rootNode = FirebaseDatabase.getInstance();
-        reference = rootNode.getReference("events");//Stien til databasen.
+        reference = rootNode.getReference("users");//Stien til databasen.
+        reference1 = reference.child(user_name);
+        reference2 = reference1.child("events");
 
-        reference.addValueEventListener(new ValueEventListener() {
+        reference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -103,10 +104,11 @@ public class TilmeldteLoeb extends TopBundMenu {
     private void getUserData(){
         SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);//Bruger nøgle userInfo og henter privat.
         String full_name = sharedPreferences.getString("fullname","");//henter string med unik nøgle og sætter lig full_name
-        String user_name = sharedPreferences.getString("username","");
+        user_name = sharedPreferences.getString("username","");
 
         fullName.setText(full_name);//tilføjer full_name til UI.
         username.setText(user_name);
+        getEventFromDB();
     }
 
     /**

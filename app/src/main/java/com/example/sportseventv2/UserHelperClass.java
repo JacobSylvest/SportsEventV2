@@ -12,6 +12,14 @@ public class UserHelperClass {
         this.events = events;
     }
 
+    public String getEvents() {
+        return events;
+    }
+
+    public void setEvents(String events) {
+        this.events = events;
+    }
+
     public String getName() {
         return name;
     }
