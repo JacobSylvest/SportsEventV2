@@ -155,6 +155,7 @@ public class Login extends AppCompatActivity {
                         editor.putString("username",usernameFromDB);
                         editor.putString("phone",phoneNoFromDB);
                         editor.putString("email",emailFromDB);
+                        editor.putString("password",userEnteredPassword);
                         editor.apply();//ligger ovenstående strings i sharedpref.
 
                         Intent intent = new Intent(getApplicationContext(),Profil.class);

@@ -49,6 +49,9 @@ public class TilmeldteLoeb extends TopBundMenu {
         getUserData();
     }
 
+    /**
+     * Henter event fra databasen.
+     */
     private void getEventFromDB(){
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("events");

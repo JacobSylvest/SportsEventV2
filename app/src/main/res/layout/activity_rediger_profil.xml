@@ -19,12 +19,14 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:hint="Fulde Navn">
+            android:hint="Fulde Navn"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Jacob Sylvest Mortensen" />
+                android:text="Jacob Sylvest Mortensen"
+                android:id="@+id/full_name_edit"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -39,7 +41,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="jsylvest@hotmail.dk" />
+                android:text="jsylvest@hotmail.dk"
+                android:id="@+id/email_edit"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -54,7 +57,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="28917722" />
+                android:text="28917722"
+                android:id="@+id/phone_edit"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,7 +74,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="123456789" />
+                android:text="123456789"
+                android:id="@+id/password_edit"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
