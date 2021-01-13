@@ -26,7 +26,7 @@ public class TilmeldteLoeb extends TopBundMenu {
 
     private static final String TAG = "TilmeldteLøb.";
     TextView fullName, username;
-    String event_imageUrl,event_title,event_description;
+    String event_imageUrl,event_title,event_description, event_child;
     List<String> titles,descriptions,imageUrl,eventChild;
     ArrayList<String> eventChilds = new ArrayList<>();
 
@@ -71,10 +71,12 @@ public class TilmeldteLoeb extends TopBundMenu {
                         event_imageUrl = dataSnapshot.child(eventChilds.get(i)).child("imgUrl").getValue(String.class);//Henter Billede info/String fra database.
                         event_title = dataSnapshot.child(eventChilds.get(i)).child("eTitle").getValue(String.class);
                         event_description = dataSnapshot.child(eventChilds.get(i)).child("description").getValue(String.class);
+                        event_child = dataSnapshot.child(eventChilds.get(i)).child("eventChild").getValue(String.class);
 
                         titles.add(event_title);//tilføjer event titel til UI.
                         descriptions.add(event_description);
                         imageUrl.add(event_imageUrl);
+                        eventChild.add(event_child);
                     }
                     showData();
                 }
