@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -145,14 +146,19 @@ public class Login extends AppCompatActivity {
                         String phoneNoFromDB = dataSnapshot.child(userEnteredPassword).child("phoneNo").getValue(String.class);
                         String emailFromDB = dataSnapshot.child(userEnteredUsername).child("emial").getValue(String.class);
 
-                        Intent intent = new Intent(getApplicationContext(),Profil.class);
-                        intent.putExtra("name", nameFromDB);
-                        intent.putExtra("username",usernameFromDB);
-                        intent.putExtra("emial",emailFromDB);
-                        intent.putExtra("phoneNo",phoneNoFromDB);
-                        intent.putExtra("password",passwordFromDB);
+                        /**
+                         * Gemmer Brugerinformationer lokalt.
+                         */
+                        SharedPreferences sharedPref = getSharedPreferences("userInfo", MODE_PRIVATE);//Bruger nøgle userInfo og henter privat.
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("fullname", nameFromDB);// tilføjer string og tildeler unik nøgler dertil.
+                        editor.putString("username",usernameFromDB);
+                        editor.putString("phone",phoneNoFromDB);
+                        editor.putString("email",emailFromDB);
+                        editor.apply();//ligger ovenstående strings i sharedpref.
 
-                        startActivity(intent);
+                        Intent intent = new Intent(getApplicationContext(),Profil.class);
+                        startActivity(intent);// starter ny aktivitet
                     }
                     else {
                         password.setError("Forkert password");

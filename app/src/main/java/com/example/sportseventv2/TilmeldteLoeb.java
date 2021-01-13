@@ -1,5 +1,6 @@
 package com.example.sportseventv2;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -44,8 +45,8 @@ public class TilmeldteLoeb extends TopBundMenu {
         eventImage = findViewById(R.id.eventImage3);
 
         showNavProfil();
-
         getEventFromDB();
+        getUserData();
     }
 
     private void getEventFromDB(){
@@ -64,14 +65,23 @@ public class TilmeldteLoeb extends TopBundMenu {
                     eventTitle.setText(eTitle);
                     Picasso.get().load(imageUrl).into(eventImage);
                 }
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
+    }
+
+    /**
+     * Henter bruger informationer.
+     */
+    private void getUserData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);//Bruger nøgle userInfo og henter privat.
+        String full_name = sharedPreferences.getString("fullname","");//henter string med unik nøgle og sætter lig full_name
+        String user_name = sharedPreferences.getString("username","");
+
+        fullName.setText(full_name);
+        username.setText(user_name);
 
     }
 
