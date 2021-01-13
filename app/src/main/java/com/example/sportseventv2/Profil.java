@@ -33,7 +33,6 @@ public class Profil extends TopBundMenu implements View.OnClickListener {
         tilmeldte_btn = findViewById(R.id.tilmeldte_løb);
         tilmeldte_btn.setOnClickListener(this);
 
-
         showAllUserData();
         showNavProfil();
     }
@@ -59,11 +58,18 @@ public class Profil extends TopBundMenu implements View.OnClickListener {
         Log.d(TAG, "Username: "+user_name);
     }
 
+    /**
+     * starter ny aktivitet.
+     */
     public void openRedigerProfil(){
         Intent intent = new Intent(this, RedigerProfil.class);
         startActivity(intent);
 
     }
+
+    /**
+     * starter ny aktivitet.
+     */
     public void openTilmeldteLoeb (){
         Intent intent = new Intent(this, TilmeldteLoeb.class);
         startActivity(intent);

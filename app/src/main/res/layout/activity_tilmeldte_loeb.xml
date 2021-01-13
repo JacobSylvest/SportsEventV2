@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/cal_bgg"
     tools:context=".TilmeldteLoeb"
     android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
 
@@ -50,47 +51,6 @@
             android:textColor="#000"
             android:textSize="14sp" />
 
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="@color/white"
-        android:layout_below="@id/profile_top">
-        <ImageView
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:id="@+id/eventImage3"
-            android:src="@drawable/ic_date" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/eventTitle3"
-            android:text="Title"
-            android:textSize="22sp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_toRightOf="@id/eventImage3"
-            android:layout_toEndOf="@id/eventImage3"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/eventText3"
-            android:text="Beskrivelse"
-            android:textSize="18sp"
-            android:textColor="#a9a9a9"
-            android:layout_toRightOf="@id/eventImage3"
-            android:layout_toEndOf="@+id/eventImage3"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_below="@id/eventTitle3"
-            />
 
     </RelativeLayout>
 

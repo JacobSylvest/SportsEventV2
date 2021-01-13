@@ -32,9 +32,9 @@ public class Event extends TopBundMenu implements View.OnClickListener{
 
         tilmeld_btn = findViewById(R.id.tilmeld_btn);
         tilmeld_btn.setOnClickListener(this);
+
         showNavKalender();
         getIncomingIntent();
-
     }
 
     /**
@@ -83,8 +83,6 @@ public class Event extends TopBundMenu implements View.OnClickListener{
         Toast.makeText(getApplicationContext(),"Tilmeldt: "+getIntent().getStringExtra("title_event"), Toast.LENGTH_SHORT).show();
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("events");
-
-
 
         EventHelperClass ehelperClass = new EventHelperClass(eTitle, description, imageUrl,eventChild);
 

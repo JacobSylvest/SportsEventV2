@@ -20,14 +20,18 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class TilmeldteLoeb extends TopBundMenu {
 
     private static final String TAG = "TilmeldteLøb.";
     TextView fullName, username;
-    String imageUrl,eTitle,description;
-    TextView eventTitle, eventDescription;
-    ImageView eventImage;
+    String event_imageUrl,event_title,event_description;
+
+    RecyclerView recyclerView;
+    EventAdapter eventAdapter;
+    List<String> titles,descriptions,imageUrl,eventChild;
+    ArrayList<String> eventChilds = new ArrayList<>();
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
@@ -36,13 +40,14 @@ public class TilmeldteLoeb extends TopBundMenu {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tilmeldte_loeb);
 
-        //TODO Der skal hentes navn + brugernavn hertil
         fullName = findViewById(R.id.full_name2);
         username = findViewById(R.id.user_name2);
 
-        eventTitle = findViewById(R.id.eventTitle3);
-        eventDescription = findViewById(R.id.eventText3);
-        eventImage = findViewById(R.id.eventImage3);
+        titles = new ArrayList<>();
+        descriptions = new ArrayList<>();
+        imageUrl = new ArrayList<>();
+        eventChild = new ArrayList<>();
+
 
         showNavProfil();
         getEventFromDB();
@@ -50,29 +55,49 @@ public class TilmeldteLoeb extends TopBundMenu {
     }
 
     /**
-     * Henter event fra databasen.
+     * Henter events fra databasen.
      */
     private void getEventFromDB(){
         rootNode = FirebaseDatabase.getInstance();
-        reference = rootNode.getReference("events");
-        // Attach a listener to read the data at our posts reference
+        reference = rootNode.getReference("events");//Stien til databasen.
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()){
-                    imageUrl = dataSnapshot.child("imgUrl").getValue(String.class);
-                    eTitle = dataSnapshot.child("title").getValue(String.class);
-                    description = dataSnapshot.child("description").getValue(String.class);
-                    eventDescription.setText(description);
-                    eventTitle.setText(eTitle);
-                    Picasso.get().load(imageUrl).into(eventImage);
+
+                    collectEventChild((Map<String,Object>) dataSnapshot.getValue());
+
+                    for (int i = 0; i < eventChilds.size() ; i++) {// Looper gennem alle eventChilds.
+                        event_imageUrl = dataSnapshot.child(eventChilds.get(i)).child("imgUrl").getValue(String.class);//Henter Billede info/String fra database.
+                        event_title = dataSnapshot.child(eventChilds.get(i)).child("eTitle").getValue(String.class);
+                        event_description = dataSnapshot.child(eventChilds.get(i)).child("description").getValue(String.class);
+
+                        titles.add(event_title);//tilføjer event titel til UI.
+                        descriptions.add(event_description);
+                        imageUrl.add(event_imageUrl);
+                    }
+                    showData();
+
                 }
             }
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError) {//i tilfælde af errors.
             }
         });
+    }
+
+    /**
+     * Henter alle eventChilds fra databasen.
+     * @param users
+     */
+    private void collectEventChild(Map<String,Object> users) {
+        for (Map.Entry<String, Object> entry : users.entrySet()){// itererer gennem alle events og ignorerer deres UID.
+            Map singleUser = (Map) entry.getValue();//Henter map.
+            eventChilds.add((String) singleUser.get("eventChild"));//Henter eventChilds  til map.
+        }
+        Log.d(TAG, "collectEventChild: "+eventChilds.toString());
     }
 
     /**
@@ -85,7 +110,16 @@ public class TilmeldteLoeb extends TopBundMenu {
 
         fullName.setText(full_name);
         username.setText(user_name);
+    }
 
+    /**
+     * Ligger event-Titler, billeder, beskrivelser og Childs ind i recyclerView gennem eventAdapter.
+     */
+    private void showData(){
+        recyclerView = findViewById(R.id.tilmeldtRecycler);
+        eventAdapter = new EventAdapter(this, titles, descriptions, imageUrl,eventChild);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this)); // laver recycleren i linearLayout
+        recyclerView.setAdapter(eventAdapter);
     }
 
 }
