@@ -30,7 +30,6 @@ public class TilmeldteLoeb extends TopBundMenu {
         username = findViewById(R.id.user_name2);
 
         showNavProfil();
-
     }
 
 }

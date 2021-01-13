@@ -16,5 +16,6 @@ public class TopHelp extends TopBundMenu {
         webView.getSettings().setJavaScriptEnabled(true); //aktiverer javascript
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl("https://www.geotrail.dk");
+        showNavProfil();
     }
 }

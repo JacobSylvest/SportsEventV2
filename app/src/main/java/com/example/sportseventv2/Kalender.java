@@ -1,25 +1,17 @@
 package com.example.sportseventv2;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.widget.Toast;
-
 import com.example.sportseventv2.model.EventAdapter;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import cz.msebera.android.httpclient.Header;
 import jxl.Cell;
 import jxl.Sheet;
@@ -34,7 +26,7 @@ public class Kalender extends TopBundMenu {
     AsyncHttpClient client;
     Workbook workbook;
     List<String> titles,descriptions,imageUrl;
-    String url = "https://github.com/NikolajMorgen/skedehans/blob/main/file.xls?raw=true";
+    String url = "https://github.com/NikolajMorgen/SportsEvent/blob/main/file.xls?raw=true";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
