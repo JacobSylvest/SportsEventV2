@@ -26,12 +26,11 @@ public class RedigerProfil extends TopBundMenu {
     /**
      * Henter bruger informationer.
      */
-    //TODO Telefonnummeret bliver ikke vist i UI.
     private void getUserData(){
         SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);//Bruger nøgle userInfo og henter privat.
         String full_name = sharedPreferences.getString("fullname","");//henter string med unik nøgle og sætter lig full_name
         String email = sharedPreferences.getString("email","");
-        String phone = sharedPreferences.getString("phone","");
+        String phone = sharedPreferences.getString("phoneNo","");
         String password = sharedPreferences.getString("password","");
 
         edit_fullname.setText(full_name);
