@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class TopBundMenu extends AppCompatActivity {
 
+    BottomNavigationView bottomNavigationView;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -44,34 +45,32 @@ public class TopBundMenu extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    void showNavKalender() {
-        //initialiserer og tilknytter/tildeler variabler
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
+    private void initBottom(){
+        //initialiserer og tilknytter/tildeler variabel
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+    }
+    void showNavKalender() {
+        initBottom();
         //sætter kalender:
         bottomNavigationView.setSelectedItemId(R.id.kalender);
         bottomNav();
     }
 
     void showNavLoeb(){
-        //initialiserer og tilknytter/tildeler variabler
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        initBottom();
         //sætter Løb som hjemmeskærm:
         bottomNavigationView.setSelectedItemId(R.id.løb);
         bottomNav();
     }
     void showNavProfil(){
-        //initialiserer og tilknytter/tildeler variabler
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        initBottom();
         //sætter profil:
         bottomNavigationView.setSelectedItemId(R.id.profil);
         bottomNav();
     }
 
     private void bottomNav() {
-        //initialiserer og tilknytter/tildeler variabler
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
