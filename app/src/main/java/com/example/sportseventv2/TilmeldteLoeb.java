@@ -27,14 +27,14 @@ public class TilmeldteLoeb extends TopBundMenu {
     private static final String TAG = "TilmeldteLøb.";
     TextView fullName, username;
     String event_imageUrl,event_title,event_description;
-
-    RecyclerView recyclerView;
-    EventAdapter eventAdapter;
     List<String> titles,descriptions,imageUrl,eventChild;
     ArrayList<String> eventChilds = new ArrayList<>();
 
+    RecyclerView recyclerView;
+    EventAdapter eventAdapter;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +47,6 @@ public class TilmeldteLoeb extends TopBundMenu {
         descriptions = new ArrayList<>();
         imageUrl = new ArrayList<>();
         eventChild = new ArrayList<>();
-
 
         showNavProfil();
         getEventFromDB();
@@ -66,7 +65,6 @@ public class TilmeldteLoeb extends TopBundMenu {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()){
-
                     collectEventChild((Map<String,Object>) dataSnapshot.getValue());
 
                     for (int i = 0; i < eventChilds.size() ; i++) {// Looper gennem alle eventChilds.
@@ -79,7 +77,6 @@ public class TilmeldteLoeb extends TopBundMenu {
                         imageUrl.add(event_imageUrl);
                     }
                     showData();
-
                 }
             }
             @Override
@@ -95,7 +92,7 @@ public class TilmeldteLoeb extends TopBundMenu {
     private void collectEventChild(Map<String,Object> users) {
         for (Map.Entry<String, Object> entry : users.entrySet()){// itererer gennem alle events og ignorerer deres UID.
             Map singleUser = (Map) entry.getValue();//Henter map.
-            eventChilds.add((String) singleUser.get("eventChild"));//Henter eventChilds  til map.
+            eventChilds.add((String) singleUser.get("eventChild"));//Henter eventChilds til map.
         }
         Log.d(TAG, "collectEventChild: "+eventChilds.toString());
     }
@@ -108,7 +105,7 @@ public class TilmeldteLoeb extends TopBundMenu {
         String full_name = sharedPreferences.getString("fullname","");//henter string med unik nøgle og sætter lig full_name
         String user_name = sharedPreferences.getString("username","");
 
-        fullName.setText(full_name);
+        fullName.setText(full_name);//tilføjer full_name til UI.
         username.setText(user_name);
     }
 

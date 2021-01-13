@@ -52,7 +52,7 @@ public class Profil extends TopBundMenu implements View.OnClickListener {
         String full_name = sharedPreferences.getString("fullname","");//henter string med unik nøgle og sætter lig full_name
         String user_name = sharedPreferences.getString("username","");
 
-        fullName.setText(full_name);
+        fullName.setText(full_name);//tilføjer full_name til UI.
         username.setText(user_name);
         Log.d(TAG, "Fullname: "+full_name);
         Log.d(TAG, "Username: "+user_name);

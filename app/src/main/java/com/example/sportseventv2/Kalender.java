@@ -82,8 +82,8 @@ public class Kalender extends TopBundMenu {
                             descriptions.add(row[1].getContents());
                             imageUrl.add(row[2].getContents());
                             eventChild.add(row[3].getContents());
-
                         }
+
                         showData();
                         Log.d("TAG", "onSuccess: "+ titles);
                     } catch (IOException e) {

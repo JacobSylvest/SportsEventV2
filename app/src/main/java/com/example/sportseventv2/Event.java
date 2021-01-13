@@ -42,16 +42,14 @@ public class Event extends TopBundMenu implements View.OnClickListener{
      */
     private void getIncomingIntent(){
         Log.d(TAG, "getIncomingIntent: checker om der event info(billede, titel, beskrivelse");
-        // spørger om der er
         if (getIntent().hasExtra("image_event")&&getIntent().hasExtra("title_event")
-                &&getIntent().hasExtra("description_event")&&getIntent().hasExtra("event_Child")){
+                &&getIntent().hasExtra("description_event")&&getIntent().hasExtra("event_Child")){// spørger om der er extra i intent.
 
             imageUrl = getIntent().getStringExtra("image_event");
             eTitle = getIntent().getStringExtra("title_event");
             description = getIntent().getStringExtra("description_event");
             eventChild = getIntent().getStringExtra("event_Child");
             setIntent(imageUrl,eTitle,description);
-
         }
     }
 
@@ -67,10 +65,8 @@ public class Event extends TopBundMenu implements View.OnClickListener{
         event_title.setText(title);
         TextView event_description = findViewById(R.id.eventText2);
         event_description.setText(description);
-
         ImageView image = findViewById(R.id.eventImage2);
-        //bruger picasso til at downloade event billede
-        Picasso.get().load(imageUrl).into(image);
+        Picasso.get().load(imageUrl).into(image);//bruger picasso til at downloade event billede
     }
 
     /**
@@ -86,8 +82,7 @@ public class Event extends TopBundMenu implements View.OnClickListener{
 
         EventHelperClass ehelperClass = new EventHelperClass(eTitle, description, imageUrl,eventChild);
 
-        // OBS Titlen må IKKE indeholde tegn eller tal - Da nedenstående linje ikke virker
-        reference.child(eventChild).setValue(ehelperClass);
+        reference.child(eventChild).setValue(ehelperClass);// OBS Child må IKKE indeholde tegn eller tal - Da nedenstående linje ikke virker
     }
 
     /**
