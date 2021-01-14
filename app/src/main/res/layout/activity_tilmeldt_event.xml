@@ -57,7 +57,7 @@
     <ImageView
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:id="@+id/eventImage2"
+        android:id="@+id/eventImage3"
         android:src="@drawable/ic_date" />
 
     <TextView

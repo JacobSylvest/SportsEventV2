@@ -81,10 +81,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                 }if (v.getContext().getClass() == TilmeldteLoeb.class) {
                     Log.d(TAG, "onClick: trykket fra TilmeldteLøb klassen");
                     Intent intent = new Intent(mContext, TilmeldtEvent.class);
-                    intent.putExtra("image_event", imageUrls.get(position));//Tilføjer billede info
-                    intent.putExtra("title_event", titles.get(position));//tilføjer event title
-                    intent.putExtra("description_event", descriptions.get(position));// tilføjer event tekst
-                    intent.putExtra("event_Child", eventChild.get(position));
+                    intent.putExtra("image_event1", imageUrls.get(position));//Tilføjer billede info
+                    intent.putExtra("title_event1", titles.get(position));//tilføjer event title
+                    intent.putExtra("description_event1", descriptions.get(position));// tilføjer event tekst
+                    intent.putExtra("event_Child1", eventChild.get(position));
                     mContext.startActivity(intent);//starter event activitet + klasse
                 }
             }
