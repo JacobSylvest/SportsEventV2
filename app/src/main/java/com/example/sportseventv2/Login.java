@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
-    Button callSignUp, login_btn;
+    Button callSignUp, login_btn, forget_pass_btn;
     ImageView image;
     TextView logoText, sloganText;
     TextInputLayout username, password;
@@ -44,8 +44,16 @@ public class Login extends AppCompatActivity {
         username = findViewById(R.id.brugernavn);
         password = findViewById(R.id.password);
         login_btn = findViewById(R.id.fortsæt_login);
+        forget_pass_btn = findViewById(R.id.glemt_kodeord);
 
 
+        forget_pass_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openForgetPassword();
+
+            }
+        });
 
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +121,6 @@ public class Login extends AppCompatActivity {
         }
     }
 
-
     private void isUser() {
 
         String userEnteredUsername = username.getEditText().getText().toString().trim();
@@ -178,6 +185,11 @@ public class Login extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void openForgetPassword(){
+        Intent intent = new Intent(this, ForgetPassword.class);
+        startActivity(intent);
     }
 
 }
