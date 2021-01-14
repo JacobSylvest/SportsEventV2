@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sportseventv2.Event;
 import com.example.sportseventv2.Kalender;
 import com.example.sportseventv2.R;
+import com.example.sportseventv2.TilmeldtEvent;
 import com.example.sportseventv2.TilmeldteLoeb;
 import com.squareup.picasso.Picasso;
 
@@ -79,7 +80,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                     mContext.startActivity(intent);//starter event activitet + klasse
                 }if (v.getContext().getClass() == TilmeldteLoeb.class) {
                     Log.d(TAG, "onClick: trykket fra TilmeldteLøb klassen");
-                    Intent intent = new Intent(mContext, TilmeldteLoeb.class);
+                    Intent intent = new Intent(mContext, TilmeldtEvent.class);
                     intent.putExtra("image_event", imageUrls.get(position));//Tilføjer billede info
                     intent.putExtra("title_event", titles.get(position));//tilføjer event title
                     intent.putExtra("description_event", descriptions.get(position));// tilføjer event tekst

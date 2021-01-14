@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 
-public class TilmeldtEvent extends TopBundMenu {
+public class TilmeldtEvent extends TopBundMenu implements View.OnClickListener{
 
     private static final String TAG = "Tilmeldt event" ;
     Button startLoeb_knap;
@@ -27,8 +27,8 @@ public class TilmeldtEvent extends TopBundMenu {
         fullName = findViewById(R.id.full_name3);
         username = findViewById(R.id.user_name3);
 
-        startLoeb_knap = findViewById(R.id.startLoeb_knap);
-        startLoeb_knap.setOnClickListener((View.OnClickListener) this);
+        //startLoeb_knap = findViewById(R.id.startLoeb_knap);
+        //startLoeb_knap.setOnClickListener(this);
         getIncomingIntent();
         getUserData();
         showNavProfil();
@@ -74,5 +74,10 @@ public class TilmeldtEvent extends TopBundMenu {
 
         fullName.setText(full_name);//tilføjer full_name til UI.
         username.setText(user_name);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
