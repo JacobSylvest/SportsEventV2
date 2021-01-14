@@ -64,7 +64,6 @@ public class Profil extends TopBundMenu implements View.OnClickListener {
     public void openRedigerProfil(){
         Intent intent = new Intent(this, RedigerProfil.class);
         startActivity(intent);
-
     }
 
     /**
@@ -73,7 +72,6 @@ public class Profil extends TopBundMenu implements View.OnClickListener {
     public void openTilmeldteLoeb (){
         Intent intent = new Intent(this, TilmeldteLoeb.class);
         startActivity(intent);
-
     }
 
     @Override

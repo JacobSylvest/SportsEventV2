@@ -1,14 +1,23 @@
 package com.example.sportseventv2;
 
 public class UserHelperClass {
-    String name, emial, phoneNo, username, password;
+    String name, emial, phoneNo, username, password, events;
 
-    public UserHelperClass(String name, String emial, String phoneNo, String username, String password) {
+    public UserHelperClass(String name, String emial, String phoneNo, String username, String password, String events) {
         this.name = name;
         this.emial = emial;
         this.phoneNo = phoneNo;
         this.username = username;
         this.password = password;
+        this.events = events;
+    }
+
+    public String getEvents() {
+        return events;
+    }
+
+    public void setEvents(String events) {
+        this.events = events;
     }
 
     public String getName() {

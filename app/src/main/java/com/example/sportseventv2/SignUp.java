@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -14,12 +15,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
 
+    private static final String TAG = "SignUp";
     //Variabler:
     TextInputLayout regName, regEmail, regPhoneNo, regUsername, regPassword;
     Button regButton, regToLogInButton;
+    //String events = "events";
 
     FirebaseDatabase rootNode;
-    DatabaseReference reference;
+    DatabaseReference reference, reference1, reference2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                Log.d(TAG, "onClick: Der er trykket på Registrer");
                 if (!validateName() | !validateEmail() | !validatephoneNo() | !validateUsername() | !validatePassword()){
                     return;
                 }
@@ -52,26 +56,41 @@ public class SignUp extends AppCompatActivity {
                 rootNode = FirebaseDatabase.getInstance();
                 reference = rootNode.getReference("users");
 
-
                 //get all values from the textfiles shown in .xml/activity_sign_up. (aka. de 5første lige ovenfor ved hooks) ;)
-
                 String name = regName.getEditText().getText().toString();
                 String email = regEmail.getEditText().getText().toString();
                 String phoneNo = regPhoneNo.getEditText().getText().toString();
                 String username = regUsername.getEditText().getText().toString();
                 String password = regPassword.getEditText().getText().toString();
+                String events = "empty";
 
-                UserHelperClass helperClass = new UserHelperClass(name, email, phoneNo,username,password);
+                UserHelperClass helperClass = new UserHelperClass(name, email, phoneNo,username,password, events);
 
                 reference.child(username).setValue(helperClass);
 
+                /**
+                 * Tilføjer et tomt event.
+                 */
+                reference1 = reference.child(username);
+                reference2 = reference1.child("events");
+
+                String eventChild = "ingen";
+                String eTitle = "ingen tilmeldte løb";
+                String description = "...";
+                String imageUrl = "https://3vfjs6e58tj3yfef2wptam15-wpengine.netdna-ssl.com/wp-content/uploads/2019/04/red-x-on-network-icon.png";
+
+                EventHelperClass ehelperClass = new EventHelperClass(eTitle, description, imageUrl,eventChild);
+
+                reference2.child(eventChild).setValue(ehelperClass);
+
+                Log.d(TAG, "onClick: Bruger tilføjet til Databasen med event");
             }
         });
 
         regToLogInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLoeb();
+                openLogin();
             }
         });
     }
@@ -79,8 +98,8 @@ public class SignUp extends AppCompatActivity {
     /**
      * Metode til at åbne Login.class
      */
-    public void openLoeb(){
-        Intent intent = new Intent(this, Løb.class);
+    public void openLogin(){
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
 
     }
