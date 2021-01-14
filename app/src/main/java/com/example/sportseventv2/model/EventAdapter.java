@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportseventv2.Event;
+import com.example.sportseventv2.Kalender;
 import com.example.sportseventv2.R;
+import com.example.sportseventv2.TilmeldteLoeb;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -39,7 +41,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         Log.d(TAG, "Adapter: " + titles); // Bruges til debugging
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -63,17 +64,28 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         /**
          * Clicklistener til styring af tryk på events i kalender.
          */
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: der er trykket på et Event");
-
-                Intent intent = new Intent(mContext, Event.class);
-                intent.putExtra("image_event",imageUrls.get(position));//Tilføjer billede info
-                intent.putExtra("title_event",titles.get(position));//tilføjer event title
-                intent.putExtra("description_event",descriptions.get(position));// tilføjer event tekst
-                intent.putExtra("event_Child",eventChild.get(position));
-                mContext.startActivity(intent);//starter event activitet + klasse
+                if(v.getContext().getClass() == Kalender.class){
+                    Log.d(TAG, "onClick: trykket fra kalender klassen");
+                    Intent intent = new Intent(mContext, Event.class);
+                    intent.putExtra("image_event",imageUrls.get(position));//Tilføjer billede info
+                    intent.putExtra("title_event",titles.get(position));//tilføjer event title
+                    intent.putExtra("description_event",descriptions.get(position));// tilføjer event tekst
+                    intent.putExtra("event_Child",eventChild.get(position));
+                    mContext.startActivity(intent);//starter event activitet + klasse
+                }if (v.getContext().getClass() == TilmeldteLoeb.class) {
+                    Log.d(TAG, "onClick: trykket fra TilmeldteLøb klassen");
+                    Intent intent = new Intent(mContext, TilmeldteLoeb.class);
+                    intent.putExtra("image_event", imageUrls.get(position));//Tilføjer billede info
+                    intent.putExtra("title_event", titles.get(position));//tilføjer event title
+                    intent.putExtra("description_event", descriptions.get(position));// tilføjer event tekst
+                    intent.putExtra("event_Child", eventChild.get(position));
+                    mContext.startActivity(intent);//starter event activitet + klasse
+                }
             }
         });
     }
