@@ -77,9 +77,8 @@ public class Event extends TopBundMenu implements View.OnClickListener{
      */
     private void tilmeldLoeb(){
         Log.d(TAG, "tilmeldLoeb: der er trykket på tilmeld løb.");
-        //TODO skal tilføje/sende løb til Tilmeldte løb i minprofil
         Toast.makeText(getApplicationContext(),"Tilmeldt: "+getIntent().getStringExtra("title_event"), Toast.LENGTH_SHORT).show();
-        //
+
         SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);//Bruger nøgle userInfo og henter privat.
         String user_name = sharedPreferences.getString("username","");
 
@@ -90,7 +89,8 @@ public class Event extends TopBundMenu implements View.OnClickListener{
 
         EventHelperClass ehelperClass = new EventHelperClass(eTitle, description, imageUrl,eventChild);
 
-        reference2.child(eventChild).setValue(ehelperClass);// OBS Child må IKKE indeholde tegn eller tal - Da nedenstående linje ikke virker
+        reference2.child(eventChild).setValue(ehelperClass);// OBS Child må IKKE indeholde tegn eller tal - Da nedenstående linje ikke virker.
+        reference2.child("ingen").removeValue();//sletter ingen tilmeldte løb fra databasen.
     }
 
     /**
