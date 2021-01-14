@@ -28,7 +28,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     List<String> titles, descriptions, imageUrls, eventChild;
     Context mContext;
 
-
     public EventAdapter(Context context, List<String> titles, List<String> descriptions, List<String> imageUrls, List<String> eventChild){
         mContext = context;
         this.inflater = LayoutInflater.from(context);
@@ -54,6 +53,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         String title = titles.get(position);
         String desc = descriptions.get(position);
         String img = imageUrls.get(position);
+        String chld = eventChild.get(position);
 
         holder.title.setText(title);
         holder.content.setText(desc);
