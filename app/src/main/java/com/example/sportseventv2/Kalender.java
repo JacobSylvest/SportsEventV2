@@ -3,10 +3,10 @@ package com.example.sportseventv2;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.example.sportseventv2.model.EventAdapter;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import cz.msebera.android.httpclient.Header;
 import jxl.Cell;
@@ -59,7 +58,7 @@ public class Kalender extends TopBundMenu {
     /**
      * Henter Events, som er oprettet i excel filen.
      */
-    private void readFromExcel(){
+    private void readFromExcel() {
         client = new AsyncHttpClient();
         client.get(url, new FileAsyncHttpResponseHandler(this) {
             @Override
@@ -71,11 +70,11 @@ public class Kalender extends TopBundMenu {
             public void onSuccess(int statusCode, Header[] headers, File file) {
                 WorkbookSettings ws = new WorkbookSettings();
                 ws.setGCDisabled(true);
-                if(file != null) {
+                if (file != null) {
                     try {
                         workbook = workbook.getWorkbook(file);
                         Sheet sheet = workbook.getSheet(0);
-                        for(int i = 0 ; i < sheet.getRows();i++){
+                        for (int i = 0; i < sheet.getRows(); i++) {
 
                             Cell[] row = sheet.getRow(i);
                             titles.add(row[0].getContents());
@@ -85,7 +84,7 @@ public class Kalender extends TopBundMenu {
                         }
 
                         showData();
-                        Log.d("TAG", "onSuccess: "+ titles);
+                        Log.d("TAG", "onSuccess: " + titles);
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (BiffException e) {
@@ -95,5 +94,4 @@ public class Kalender extends TopBundMenu {
             }
         });
     }
-
 }
