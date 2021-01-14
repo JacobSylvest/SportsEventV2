@@ -11,15 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsEventV2">
+        <activity android:name=".TilmeldtEvent"></activity>
         <activity android:name=".ForgetPassword"></activity>
         <activity
             android:name=".TilmeldteLoeb"
-            android:label="@string/head_tildmeldte"
-            android:theme="@style/Theme.ActionBar" />
+            android:theme="@style/Theme.ActionBar"
+            android:label="@string/head_tildmeldte"/>
         <activity
             android:name=".Event"
-            android:label="@string/head_event"
-            android:theme="@style/Theme.ActionBar" />
+            android:theme="@style/Theme.ActionBar"
+            android:label="@string/head_event"/>
         <activity
             android:name=".RedigerProfil"
             android:theme="@style/Theme.ActionBar" />
