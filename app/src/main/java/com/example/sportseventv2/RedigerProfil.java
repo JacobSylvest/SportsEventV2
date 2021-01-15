@@ -38,7 +38,5 @@ public class RedigerProfil extends TopBundMenu {
         edit_email.setText(email);
         edit_phone.setText(phone);
         edit_password.setText(password);
-
-
     }
 }

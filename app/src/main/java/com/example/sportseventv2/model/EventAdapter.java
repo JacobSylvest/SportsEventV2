@@ -63,14 +63,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         Picasso.get().load(img).into(holder.listImg);
 
         /**
-         * Clicklistener til styring af tryk på events i kalender.
+         * Clicklistener til styring af tryk på events i kalender & TilmeldteLøb.
          */
-
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(v.getContext().getClass() == Kalender.class){
+                if(v.getContext().getClass() == Kalender.class){//hvis du kommer fra kalender.class
                     Log.d(TAG, "onClick: trykket fra kalender klassen");
                     Intent intent = new Intent(mContext, Event.class);
                     intent.putExtra("image_event",imageUrls.get(position));//Tilføjer billede info
@@ -78,14 +76,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                     intent.putExtra("description_event",descriptions.get(position));// tilføjer event tekst
                     intent.putExtra("event_Child",eventChild.get(position));
                     mContext.startActivity(intent);//starter event activitet + klasse
-                }if (v.getContext().getClass() == TilmeldteLoeb.class) {
+                }if (v.getContext().getClass() == TilmeldteLoeb.class) {//hvis du kommer fra TilmeldteLoeb.class
                     Log.d(TAG, "onClick: trykket fra TilmeldteLøb klassen");
                     Intent intent = new Intent(mContext, TilmeldtEvent.class);
                     intent.putExtra("image_event1", imageUrls.get(position));//Tilføjer billede info
                     intent.putExtra("title_event1", titles.get(position));//tilføjer event title
                     intent.putExtra("description_event1", descriptions.get(position));// tilføjer event tekst
                     intent.putExtra("event_Child1", eventChild.get(position));
-                    mContext.startActivity(intent);//starter event activitet + klasse
+                    mContext.startActivity(intent);//starter TilmeldtEvent activitet + klasse
                 }
             }
         });
