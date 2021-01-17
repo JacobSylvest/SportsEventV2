@@ -60,8 +60,18 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
     private Point originPosition;
     private Point destinationPosition;
     private Marker destinationMarker;
+    private Marker originMarker;
+    private Marker checkPointMarker1;
+    private Marker checkPointMarker2;
+    private Marker checkPointMarker3;
     private NavigationMapRoute navigationMapRoute;
+    private DirectionsRoute currentRoute;
     private static final String TAG = "MapboxMain";
+    private LatLng slut;
+    private LatLng start;
+    private LatLng chp1;
+    private LatLng chp2;
+    private LatLng chp3;
 
 
 
@@ -81,20 +91,34 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
         Double destinantionLong = intent.getDoubleExtra("slutlong",55.0);
         Double destinantionLad = intent.getDoubleExtra("slutlad",12.50);
 
-        Point start = Point.fromLngLat(originLong, originLad);
-        Point slut = Point.fromLngLat(destinantionLong, destinantionLad);
+        Double chp1Long = intent.getDoubleExtra("check1long", 55.50);
+        Double chp1Lad = intent.getDoubleExtra("check1lad",12.0);
+        Double chp2Long = intent.getDoubleExtra("check2long",55.0);
+        Double chp2Lad = intent.getDoubleExtra("check2lad",12.50);
+        Double chp3Long = intent.getDoubleExtra("check3long",55.0);
+        Double chp3Lad = intent.getDoubleExtra("check3lad",12.50);
+
+        slut = new LatLng(destinantionLad, destinantionLong);
+        start = new LatLng(originLad, originLong);
+
+        chp1 = new LatLng(chp1Lad,chp1Long);
+        chp2 = new LatLng(chp2Lad,chp2Long);
+        chp3 = new LatLng(chp3Lad,chp3Long);
+
+
+
 
         startButton.setOnClickListener(new View.OnClickListener() {
             //TODO Hvis det ønskes at simulere en rute, ændres .shouldSimulateRoute til true
             @Override
             public void onClick(View v) {
-                NavigationLauncherOptions options = NavigationLauncherOptions.builder()
-                        .origin(start)
-                        .destination(slut)
-                        .shouldSimulateRoute(false)
-                        .build();
-                NavigationLauncher.startNavigation(MapboxMain.this, options);
-            }
+
+               NavigationLauncherOptions options = NavigationLauncherOptions.builder()
+                       .directionsRoute(currentRoute)
+                       .shouldSimulateRoute(true)
+                       .build();
+                NavigationLauncher.startNavigation(MapboxMain.this, options);}
+
         });
 
         //initialiserer og tilknytter/tildeler variabler
@@ -129,10 +153,6 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
             }
         });
 
-        getRoute(start, slut);
-
-        startButton.setEnabled(true);
-        startButton.setBackgroundResource(R.color.mapboxBlue);
     }
     @Override
     public void onMapReady(MapboxMap mapboxMap) {
@@ -141,7 +161,7 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
         enableLocation();
     }
 
-    private void enableLocation(){
+    private void enableLocation(){ //Tjekker om der er givet tilladelse til location
         if(PermissionsManager.areLocationPermissionsGranted(this)){
             initializeLocationEngine();
             initializeLocationLayer();
@@ -157,7 +177,7 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
         locationEngine.activate();
 
         Location lastLocation = locationEngine.getLastLocation();
-        if(lastLocation != null) {
+        if (lastLocation != null) {
             originLocation = lastLocation;
             setCameraPosition(lastLocation);
         } else {
@@ -171,7 +191,7 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
         locationLayerPlugin.setCameraMode(CameraMode.TRACKING);
         locationLayerPlugin.setRenderMode(RenderMode.COMPASS);
     }
-//TODO tilpas zoom til det ønskede
+    //TODO tilpas zoom til det ønskede
     private void setCameraPosition(Location location){
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),
                 location.getLongitude()), 70.0));
@@ -180,24 +200,40 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
     @Override
     public void onMapClick(@NonNull LatLng point) {
 
-       /* if(destinationMarker != null) {
+        if(destinationMarker != null) {
             map.removeMarker(destinationMarker);
+            map.removeMarker(originMarker);
+            map.removeMarker(checkPointMarker1);
+            map.removeMarker(checkPointMarker2);
+            map.removeMarker(checkPointMarker3);
         }
 
-        destinationMarker = map.addMarker(new MarkerOptions().position(point));
+        destinationMarker = map.addMarker(new MarkerOptions().position(slut));
+        originMarker = map.addMarker(new MarkerOptions().position(start));
 
-        destinationPosition = Point.fromLngLat(point.getLongitude(), point.getLatitude());
-        originPosition = Point.fromLngLat(originLocation.getLongitude(), originLocation.getLatitude());
-        getRoute(originPosition, destinationPosition);
+        checkPointMarker1 = map.addMarker(new MarkerOptions().position(chp1).title("Checkpoint 1"));
+        checkPointMarker2 = map.addMarker(new MarkerOptions().position(chp2).title("Checkpoint 2"));
+        checkPointMarker3 = map.addMarker(new MarkerOptions().position(chp3).title("Checkpoint 3"));
+
+        destinationPosition = Point.fromLngLat(slut.getLongitude(), slut.getLatitude());
+        originPosition = Point.fromLngLat(start.getLongitude(), start.getLatitude());
+        Point checkPoint1 = Point.fromLngLat(chp1.getLongitude(), chp1.getLatitude());
+        Point checkPoint2 = Point.fromLngLat(chp2.getLongitude(), chp2.getLatitude());
+        Point checkPoint3 = Point.fromLngLat(chp3.getLongitude(), chp3.getLatitude());
+
+        getRoute(originPosition, checkPoint1, checkPoint2, checkPoint3, destinationPosition);
 
         startButton.setEnabled(true);
-        startButton.setBackgroundResource(R.color.mapboxBlue);*/
+        startButton.setBackgroundResource(R.color.mapboxBlue);
     }
 
-    private void getRoute(Point origin, Point destination) {
+    private void getRoute(Point origin, Point check1, Point check2, Point check3, Point destination) {
         NavigationRoute.builder()
                 .accessToken(Mapbox.getAccessToken())
                 .origin(origin)
+                .addWaypoint(check1)
+                .addWaypoint(check2)
+                .addWaypoint(check3)
                 .destination(destination)
                 .build()
                 .getRoute(new Callback<DirectionsResponse>() {
@@ -211,7 +247,7 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
                             return;
                         }
 
-                        DirectionsRoute currentRoute = response.body().routes().get(0);
+                        currentRoute = response.body().routes().get(0);
 
                         if (navigationMapRoute != null) {
                             navigationMapRoute.removeRoute();
@@ -249,7 +285,7 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
     }
 
     @Override
-    public void onPermissionResult(boolean granted) {
+    public void onPermissionResult(boolean granted) { //Sender tilbage til enableLocation når location er tilladt
         if(granted){
             enableLocation();
         }

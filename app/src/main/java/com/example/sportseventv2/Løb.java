@@ -18,16 +18,29 @@ public class Løb extends TopMenu {
     Double startlad;
     Double slutlong;
     Double slutlad;
+    Double check1long;
+    Double check1lad;
+    Double check2long;
+    Double check2lad;
+    Double check3long;
+    Double check3lad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loeb);
 
-        startlong = 55.646371;
-        startlad = 12.643210;
-        slutlong = 55.563156;
-        slutlad = 12.587285;
+        startlong = 12.44869;
+        startlad = 55.73940;
+        slutlong = 12.450843;
+        slutlad = 55.746287;
+        check1long = 12.396373;
+        check1lad = 55.731104;
+        check2long = 12.335487;
+        check2lad = 55.755271;
+        check3long = 12.378231;
+        check3lad = 55.794664;
+
 
         button = findViewById(R.id.knap);
         button.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +90,12 @@ public class Løb extends TopMenu {
         intent.putExtra("slutlong",slutlong);
         intent.putExtra("startlad",startlad);
         intent.putExtra("slutlad",slutlad);
+        intent.putExtra("check1long",check1long);
+        intent.putExtra("check2long",check2long);
+        intent.putExtra("check3long",check3long);
+        intent.putExtra("check1lad",check1lad);
+        intent.putExtra("check2lad",check2lad);
+        intent.putExtra("check3lad",check3lad);
         startActivity(intent);
     }
 }
