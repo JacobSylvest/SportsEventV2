@@ -21,6 +21,7 @@ import com.mapbox.android.core.location.LocationEnginePriority;
 import com.mapbox.android.core.location.LocationEngineProvider;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
+import com.mapbox.api.directions.v5.DirectionsCriteria;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.geojson.Point;
@@ -229,12 +230,13 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
 
     private void getRoute(Point origin, Point check1, Point check2, Point check3, Point destination) {
         NavigationRoute.builder()
-                .accessToken(Mapbox.getAccessToken())
                 .origin(origin)
                 .addWaypoint(check1)
                 .addWaypoint(check2)
                 .addWaypoint(check3)
                 .destination(destination)
+                .profile(DirectionsCriteria.PROFILE_CYCLING)
+                .accessToken(Mapbox.getAccessToken())
                 .build()
                 .getRoute(new Callback<DirectionsResponse>() {
                     @Override
