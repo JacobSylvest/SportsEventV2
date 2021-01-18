@@ -12,7 +12,7 @@ import android.widget.Button;
 import com.example.sportseventv2.model.MapboxMain;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Løb extends TopMenu {
+public class Løb extends TopBundMenu {
     Button button;
     Double startlong;
     Double startlad;

@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.example.sportseventv2.Kalender;
 import com.example.sportseventv2.Profil;
 import com.example.sportseventv2.R;
-import com.example.sportseventv2.TopMenu;
+import com.example.sportseventv2.TopBundMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineListener;
@@ -48,7 +48,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationEngineListener,
+public class MapboxMain extends TopBundMenu implements OnMapReadyCallback, LocationEngineListener,
         PermissionsListener, MapboxMap.OnMapClickListener {
 
     private MapView mapView;
@@ -110,7 +110,7 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
 
 
         startButton.setOnClickListener(new View.OnClickListener() {
-            //TODO Hvis det ønskes at simulere en rute, ændres .shouldSimulateRoute til true
+            //Hvis det ønskes at simulere en rute, ændres .shouldSimulateRoute til true
             @Override
             public void onClick(View v) {
 
@@ -180,7 +180,7 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
         Location lastLocation = locationEngine.getLastLocation();
         if (lastLocation != null) {
             originLocation = lastLocation;
-            setCameraPosition(lastLocation);
+            setCameraPosition(new LatLng(lastLocation));
         } else {
             locationEngine.addLocationEngineListener(this);
         }
@@ -192,10 +192,9 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
         locationLayerPlugin.setCameraMode(CameraMode.TRACKING);
         locationLayerPlugin.setRenderMode(RenderMode.COMPASS);
     }
-    //TODO tilpas zoom til det ønskede
-    private void setCameraPosition(Location location){
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),
-                location.getLongitude()), 70.0));
+
+    private void setCameraPosition(LatLng point){
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 70.0));
     }
 
     @Override
@@ -264,6 +263,7 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
                         Log.e(TAG, "Error:" + t.getMessage());
                     }
                 });
+        setCameraPosition(start);
     }
 
 
@@ -277,7 +277,7 @@ public class MapboxMain extends TopMenu implements OnMapReadyCallback, LocationE
     public void onLocationChanged(Location location) {
         if(location != null) {
             originLocation = location;
-            setCameraPosition(location);
+            setCameraPosition(new LatLng(location));
         }
     }
 
