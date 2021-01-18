@@ -85,10 +85,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         Picasso.get().load(img).into(holder.listImg);
 
         /**
-         * Clicklistener til styring af tryk på events i kalender.
+         * Clicklistener til styring af tryk på events i kalender & TilmeldteLøb.
          */
-
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
