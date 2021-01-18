@@ -2,6 +2,7 @@ package com.example.sportseventv2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,9 +51,10 @@ public class Login extends AppCompatActivity {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginUser(v);
+                openMainPage();
             }
         });
+
 
         callSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +79,6 @@ public class Login extends AppCompatActivity {
 
     private Boolean validateUsername(){
         String val = username.getEditText().getText().toString();
-
         if (val.isEmpty()){
             username.setError("Feltet skal udfyldes");
             return false;
@@ -90,7 +92,6 @@ public class Login extends AppCompatActivity {
 
     private Boolean validatePassword() {
         String val = password.getEditText().getText().toString();
-
         if (val.isEmpty()){
             password.setError("Feltet skal udfyldes");
             return false;
@@ -119,10 +120,7 @@ public class Login extends AppCompatActivity {
         String userEnteredPassword = password.getEditText().getText().toString().trim();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-
         Query checkUser = reference.orderByChild("username").equalTo(userEnteredUsername);
-
-
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -134,26 +132,26 @@ public class Login extends AppCompatActivity {
 
                     String passwordFromDB = dataSnapshot.child(userEnteredUsername).child("password").getValue(String.class);
 
-                    if(passwordFromDB.equals(userEnteredPassword)){
+                    if (passwordFromDB.equals(userEnteredPassword)){
 
                         username.setError(null);
                         username.setErrorEnabled(false);
 
                         String nameFromDB = dataSnapshot.child(userEnteredUsername).child("name").getValue(String.class);
                         String usernameFromDB = dataSnapshot.child(userEnteredUsername).child("username").getValue(String.class);
-                        String phoneNoFromDB = dataSnapshot.child(userEnteredPassword).child("phoneNo").getValue(String.class);
-                        String emailFromDB = dataSnapshot.child(userEnteredUsername).child("emial").getValue(String.class);
+                        String phoneNoFromDB = dataSnapshot.child(userEnteredUsername).child("phoneNo").getValue(String.class);
+                        String emailFromDB = dataSnapshot.child(userEnteredUsername).child("email").getValue(String.class);
 
                         Intent intent = new Intent(getApplicationContext(),Profil.class);
-                        intent.putExtra("name", nameFromDB);
+                        intent.putExtra("name",nameFromDB);
                         intent.putExtra("username",usernameFromDB);
-                        intent.putExtra("emial",emailFromDB);
                         intent.putExtra("phoneNo",phoneNoFromDB);
+                        intent.putExtra("email",emailFromDB);
                         intent.putExtra("password",passwordFromDB);
 
                         startActivity(intent);
                     }
-                    else {
+                    else{
                         password.setError("Forkert password");
                         password.requestFocus();
                     }
@@ -162,7 +160,6 @@ public class Login extends AppCompatActivity {
                     username.setError("Bruger findes ikke");
                     username.requestFocus();
                 }
-
             }
 
             @Override
@@ -170,15 +167,14 @@ public class Login extends AppCompatActivity {
 
             }
         });
-
     }
 
-     //Metode til at åbne løb.class
-
-    public void openBottomNavigation(){
+    /**
+     * Metode til at åbne løb.class
+     */
+    public void openMainPage(){
         Intent intent = new Intent(this, Løb.class);
         startActivity(intent);
 
     }
-
 }

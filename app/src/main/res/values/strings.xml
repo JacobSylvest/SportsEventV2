@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SportsEvent</string>
 
-    <!--Strings til overskrifter/labels -->
+    <!--Strings til overskrifter -->
     <string name="head_login">Login</string>
     <string name="head_loeb">Løb</string>
     <string name="head_kalender">Kalender</string>
@@ -32,4 +32,9 @@
 
     <!--Strings til knapper -->
     <string name="tilmeld">Tilmeld løb</string>
-</resources>
+
+    <!--String(s) til mapbox -->
+    <string name="access_token">pk.eyJ1Ijoibmlrb2xham1vcmdlbiIsImEiOiJja2pyMGpmZDEwbmtuMnNqeDJzMnRuazVoIn0.OlvDLSLRuN9m2Yk-B--9YQ</string>
+    <string name="start_navigation">Start Navigation</string>
+    <string name="startRute">Start Rute</string>
+    </resources>

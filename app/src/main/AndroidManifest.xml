@@ -3,6 +3,9 @@
     package="com.example.sportseventv2">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- permission to mapbox location -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsEventV2">
+        <activity android:name=".model.MapboxMain"></activity>
         <activity
             android:name=".TilmeldteLoeb"
             android:theme="@style/Theme.ActionBar"
@@ -25,21 +29,17 @@
         <activity
             android:name=".TopKontakt"
             android:label="@string/head_kontakt"
-            android:theme="@style/Theme.ActionBar" />
-        <activity
-            android:name=".TopHelp"
+            android:theme="@style/Theme.ActionBar"/>
+        <activity android:name=".TopHelp"
             android:label="@string/head_hjaelp"
-            android:theme="@style/Theme.ActionBar" />
-        <activity
-            android:name=".Profil"
+            android:theme="@style/Theme.ActionBar"/>
+        <activity android:name=".Profil"
             android:label="@string/head_profil"
-            android:theme="@style/Theme.ActionBar" />
-        <activity
-            android:name=".Kalender"
+            android:theme="@style/Theme.ActionBar"/>
+        <activity android:name=".Kalender"
             android:label="@string/head_kalender"
-            android:theme="@style/Theme.ActionBar" />
-        <activity
-            android:name=".Løb"
+            android:theme="@style/Theme.ActionBar"/>
+        <activity android:name=".Løb"
             android:label="@string/head_loeb"
             android:theme="@style/Theme.ActionBar" />
         <activity
