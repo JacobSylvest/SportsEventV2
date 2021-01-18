@@ -87,4 +87,7 @@ public class RedigerProfil extends TopBundMenu {
         }
 
     }
+    public void displayToast(View v){
+        Toast.makeText(RedigerProfil.this, "Endnu ikke implementeret", Toast.LENGTH_SHORT).show();
+    }
 }
