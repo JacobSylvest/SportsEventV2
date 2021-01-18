@@ -26,7 +26,7 @@ public class TilmeldteLoeb extends TopBundMenu {
 
     private static final String TAG = "TilmeldteLøb.";
     TextView fullName, username;
-    String event_imageUrl,event_title,event_description, user_name,event_child;
+    String event_imageUrl,event_title,event_description, user_name,event_child,event_startLAT,event_startLNG,event_via1LAT,event_via1LNG,event_via2LAT,event_via2LNG,event_via3LAT,event_via3LNG,event_endLAT,event_endLNG;
     List<String> titles,descriptions,imageUrl,eventChild,startLAT,startLNG,via1LAT,via1LNG,via2LAT,via2LNG,via3LAT,via3LNG,endLAT,endLNG;
     ArrayList<String> eventChilds = new ArrayList<>();
 
@@ -82,6 +82,17 @@ public class TilmeldteLoeb extends TopBundMenu {
                              event_title = dataSnapshot.child(eventChilds.get(i)).child("eTitle").getValue(String.class);
                              event_description = dataSnapshot.child(eventChilds.get(i)).child("description").getValue(String.class);
                              event_child = dataSnapshot.child(eventChilds.get(i)).child("eventChild").getValue(String.class);
+                             event_startLAT = dataSnapshot.child(eventChilds.get(i)).child("startLAT").getValue(String.class);
+                             event_startLNG = dataSnapshot.child(eventChilds.get(i)).child("startLNG").getValue(String.class);
+                             event_via1LAT = dataSnapshot.child(eventChilds.get(i)).child("via1LAT").getValue(String.class);
+                             event_via1LNG = dataSnapshot.child(eventChilds.get(i)).child("via1LNG").getValue(String.class);
+                             event_via2LAT = dataSnapshot.child(eventChilds.get(i)).child("via2LAT").getValue(String.class);
+                             event_via2LNG = dataSnapshot.child(eventChilds.get(i)).child("via2LNG").getValue(String.class);
+                             event_via3LAT = dataSnapshot.child(eventChilds.get(i)).child("via3LAT").getValue(String.class);
+                             event_via3LNG = dataSnapshot.child(eventChilds.get(i)).child("via3LNG").getValue(String.class);
+                             event_endLAT = dataSnapshot.child(eventChilds.get(i)).child("endLAT").getValue(String.class);
+                             event_endLNG = dataSnapshot.child(eventChilds.get(i)).child("endLNG").getValue(String.class);
+
 
                              titles.add(event_title);//tilføjer event titel til UI.
                              descriptions.add(event_description);
