@@ -89,35 +89,3 @@ public class RedigerProfil extends TopBundMenu {
     }
 
 }
-
-
- /*private boolean isEmailChanged() {
-        if(!email.equals(edit_email.getText().toString())){
-            reference.child(username).child("emial").setValue(edit_email.getText().toString());
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    private boolean isPhoneNoChanged() {
-        if(!phone.equals(edit_phone.getText().toString())){
-            reference.child(username).child("phoneNo").setValue(edit_phone.getText().toString());
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    private boolean isPasswordChanged() {
-        if(!password.equals(edit_password.getText().toString())){
-            reference.child(username).child("password").setValue(edit_password.getText().toString());
-            return true;
-        }
-        else {
-            return false;
-        }
-
-     */
