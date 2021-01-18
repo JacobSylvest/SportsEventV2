@@ -159,9 +159,9 @@ public class Login extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putString("fullname", nameFromDB);// tilføjer string og tildeler unik nøgler dertil.
                         editor.putString("username",usernameFromDB);
-                        editor.putString("phoneNo",phoneNoFromDB);
+                        editor.putString("phoneno",phoneNoFromDB);
                         editor.putString("email",emailFromDB);
-                        editor.putString("password",userEnteredPassword);
+                        editor.putString("passwordpass",userEnteredPassword);
                         editor.apply();//ligger ovenstående strings i sharedpref.
 
                         Intent intent = new Intent(getApplicationContext(),Profil.class);
