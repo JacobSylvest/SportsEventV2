@@ -41,7 +41,7 @@ public class TilmeldtEvent extends TopBundMenu implements View.OnClickListener{
     private void getIncomingIntent(){
         Log.d(TAG, "getIncomingIntent: checker om der event info(billede, titel, beskrivelse");
         if (getIntent().hasExtra("image_event1")&&getIntent().hasExtra("title_event1")
-                &&getIntent().hasExtra("description_event1")&&getIntent().hasExtra("event_Child1")&&getIntent().hasExtra("event_startLAT1")&&getIntent().hasExtra("event_startLNG1")
+                &&getIntent().hasExtra("description_event1")&&getIntent().hasExtra("event_Child1")&&getIntent().hasExtra("event_startLat")&&getIntent().hasExtra("event_startLNG1")
                 &&getIntent().hasExtra("event_via1LAT1")&&getIntent().hasExtra("event_via1LNG1")&&getIntent().hasExtra("event_via2LAT1")&&getIntent().hasExtra("event_via2LNG1")
                 &&getIntent().hasExtra("event_via3LAT1")&&getIntent().hasExtra("event_via3LNG1")&&getIntent().hasExtra("event_endLAT1")&&getIntent().hasExtra("event_endLNG1")){// spørger om der er extra i intent.
 
@@ -49,7 +49,7 @@ public class TilmeldtEvent extends TopBundMenu implements View.OnClickListener{
             eTitle = getIntent().getStringExtra("title_event1");
             description = getIntent().getStringExtra("description_event1");
             eventChild = getIntent().getStringExtra("event_Child1");
-            startLAT = getIntent().getStringExtra("event_startLAT1");
+            startLAT = getIntent().getStringExtra("event_startLat");
             startLNG = getIntent().getStringExtra("event_startLNG1");
             via1LAT = getIntent().getStringExtra("event_via1LAT1");
             via1LNG = getIntent().getStringExtra("event_via1LNG1");

@@ -67,8 +67,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         String title = titles.get(position);
         String desc = descriptions.get(position);
         String img = imageUrls.get(position);
-       /* String chld = eventChild.get(position);
-        String sLAT = startLAT.get(position);
+        String chld = eventChild.get(position);
+        /*String sLAT = startLAT.get(position);
         String sLNG = startLNG.get(position);
         String v1LAT = via1LAT.get(position);
         String v1LNG = via1LNG.get(position);
@@ -100,6 +100,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                     intent.putExtra("description_event",descriptions.get(position));// tilføjer event tekst
                     intent.putExtra("event_Child",eventChild.get(position));
                     intent.putExtra("event_startLAT",startLAT.get(position));
+                    Log.d(TAG, "onClick:  sat Start Lat.: "+ startLAT.get(position));
                     intent.putExtra("event_startLNG",startLNG.get(position));
                     intent.putExtra("event_via1LAT",via1LAT.get(position));
                     intent.putExtra("event_via1LNG",via1LNG.get(position));
@@ -117,16 +118,18 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                     intent.putExtra("title_event1", titles.get(position));//tilføjer event title
                     intent.putExtra("description_event1", descriptions.get(position));// tilføjer event tekst
                     intent.putExtra("event_Child1", eventChild.get(position));
-                    intent.putExtra("event_startLAT1",startLAT.get(position));
-                    intent.putExtra("event_startLNG1",startLNG.get(position));
-                    intent.putExtra("event_via1LAT1",via1LAT.get(position));
-                    intent.putExtra("event_via1LNG1",via1LNG.get(position));
-                    intent.putExtra("event_via2LAT1",via2LAT.get(position));
-                    intent.putExtra("event_via2LNG1",via2LNG.get(position));
-                    intent.putExtra("event_via3LAT1",via3LAT.get(position));
-                    intent.putExtra("event_via3LNG1",via3LNG.get(position));
-                    intent.putExtra("event_endLAT1",endLAT.get(position));
-                    intent.putExtra("event_endLNG1",endLNG.get(position));
+                    intent.putExtra("event_startLat",startLAT.get(position));
+                    //intent.putExtra("event_startLAT1", startLAT.get(position));
+                    Log.d(TAG, "onClick:  sat Start Lat. til: "+ startLAT.get(position));
+                    intent.putExtra("event_startLNG1", startLNG.get(position));
+                    intent.putExtra("event_via1LAT1", via1LAT.get(position));
+                    intent.putExtra("event_via1LNG1", via1LNG.get(position));
+                    intent.putExtra("event_via2LAT1", via2LAT.get(position));
+                    intent.putExtra("event_via2LNG1", via2LNG.get(position));
+                    intent.putExtra("event_via3LAT1", via3LAT.get(position));
+                    intent.putExtra("event_via3LNG1", via3LNG.get(position));
+                    intent.putExtra("event_endLAT1", endLAT.get(position));
+                    intent.putExtra("event_endLNG1", endLNG.get(position));
                     mContext.startActivity(intent);//starter event activitet + klasse
                 }
             }
