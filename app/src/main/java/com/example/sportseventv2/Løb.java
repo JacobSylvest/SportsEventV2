@@ -1,19 +1,16 @@
 package com.example.sportseventv2;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.example.sportseventv2.model.MapboxMain;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Løb extends TopBundMenu {
-    Button button;
     Double startlong;
     Double startlad;
     Double slutlong;
@@ -42,13 +39,9 @@ public class Løb extends TopBundMenu {
         check3lad = 55.794664;
 
 
-        button = findViewById(R.id.knap);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMapboxMain();
-            }
-        });
+
+        openMapboxMain();
+
 
         //initialiserer og tilknytter/tildeler variabler
 
