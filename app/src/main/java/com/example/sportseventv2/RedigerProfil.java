@@ -15,7 +15,7 @@ public class RedigerProfil extends TopBundMenu {
 
     EditText edit_fullname, edit_password, edit_email, edit_phone;
 
-    String full_name, email, phone, password;
+    String full_name, email, phone, password, username;
 
     DatabaseReference reference;
 
@@ -41,10 +41,11 @@ public class RedigerProfil extends TopBundMenu {
     //Henter bruger informationer.
     private void getUserData(){
         SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);//Bruger nøgle userInfo og henter privat.
-        String full_name = sharedPreferences.getString("fullname","");//henter string med unik nøgle og sætter lig full_name
+        full_name = sharedPreferences.getString("fullname","");//henter string med unik nøgle og sætter lig full_name
         String email = sharedPreferences.getString("email","");
         String phone = sharedPreferences.getString("phoneNo","");
         String password = sharedPreferences.getString("password","");
+        username = sharedPreferences.getString("username","");
 
         edit_fullname.setText(full_name);
         edit_email.setText(email);
@@ -64,7 +65,7 @@ public class RedigerProfil extends TopBundMenu {
 //metodernde nedenfor burde kalde frem og tilbage med databasen, men der er noget galt so far.
     private boolean isNameChanged() {
         if(!full_name.equals(edit_fullname.getText().toString())){
-            reference.child(full_name).child("name").setValue(edit_fullname.getText().toString());
+            reference.child(username).child("name").setValue(edit_fullname.getText().toString());
             return true;
         }
         else {
