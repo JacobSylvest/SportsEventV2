@@ -19,7 +19,7 @@ public class Profil extends TopBundMenu implements View.OnClickListener {
 
 
     private static final String TAG = "Profil.";
-    private Button button, tilmeldte_btn;
+    private Button button, tilmeldte_btn, tac_btn;
     TextView fullName, username;
 
     @Override
@@ -32,6 +32,9 @@ public class Profil extends TopBundMenu implements View.OnClickListener {
 
         tilmeldte_btn = findViewById(R.id.tilmeldte_løb);
         tilmeldte_btn.setOnClickListener(this);
+
+        tac_btn = findViewById(R.id.tac);
+        tac_btn.setOnClickListener(this);
 
         showAllUserData();
         showNavProfil();
@@ -74,6 +77,14 @@ public class Profil extends TopBundMenu implements View.OnClickListener {
         startActivity(intent);
     }
 
+    /**
+     * starter ny aktivitet.
+     */
+    public  void openTac(){
+        Intent intent = new Intent(this, TAC.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onClick(View v) {
         if(v == button){
@@ -81,6 +92,9 @@ public class Profil extends TopBundMenu implements View.OnClickListener {
         }
         if (v == tilmeldte_btn){
             openTilmeldteLoeb();
+        }
+        if (v == tac_btn){
+            openTac();
         }
     }
 }
