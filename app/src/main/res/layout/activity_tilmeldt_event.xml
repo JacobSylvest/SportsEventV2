@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profil"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2F5597"
+        android:padding="20dp"
+        android:id="@+id/profile_top">
+
+        <ImageView
+            android:id="@+id/profil_logo3"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/profile_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/full_name3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/profil_logo3"
+            android:fontFamily="sans-serif-condensed"
+            android:includeFontPadding="false"
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/user_name3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/full_name3"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/profil_logo3"
+            android:fontFamily="sans-serif-condensed"
+            android:includeFontPadding="false"
+            android:textColor="#000"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/eventImage3"
+        android:src="@drawable/ic_date" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventTitle3"
+        android:text="Title"
+        android:textSize="22sp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_toRightOf="@id/eventImage3"
+        android:layout_toEndOf="@id/eventImage3"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventText3"
+        android:text="Beskrivelse"
+        android:textSize="18sp"
+        android:textColor="#a9a9a9"
+        android:layout_toRightOf="@id/eventImage3"
+        android:layout_toEndOf="@+id/eventImage3"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/eventTitle3"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-40dp"
+        android:orientation="horizontal"
+        android:padding="20dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:itemBackground="@color/temafarve"
+            app:itemIconTint="@drawable/selector"
+            app:itemTextColor="@drawable/selector"
+            app:menu="@menu/menu_navigation" />
+
+        <Button
+            android:id="@+id/startLoeb_knap"
+            android:layout_width="143dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="133dp"
+            android:layout_marginEnd="135dp"
+            android:layout_marginBottom="66dp"
+            android:text="START LØB" />
+    </RelativeLayout>
+
+</LinearLayout>

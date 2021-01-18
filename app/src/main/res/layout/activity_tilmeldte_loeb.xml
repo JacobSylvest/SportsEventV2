@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/cal_bgg"
     tools:context=".TilmeldteLoeb"
     android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
 
@@ -60,6 +61,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/profile_top"/>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/temafarve"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/menu_navigation" />
 
 
 </RelativeLayout>
