@@ -13,4 +13,9 @@
     <color name="green">#00CC00</color>
     <color name="transparent">#CCFFFFFF</color>
 
+
+    <!--Farver til mapbox -->
+    <color name="mapboxWhite">#ffffff</color>
+    <color name="mapboxBlue">#2F5597</color>
+    <color name="mapboxGrayLight">#c6d2e1</color>
 </resources>

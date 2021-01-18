@@ -3,6 +3,9 @@
     package="com.example.sportseventv2">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- permission to mapbox location -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -11,8 +14,10 @@
         android:roundIcon="@mipmap/sportsevent_app_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsEventV2">
-        <activity android:name=".TilmeldtEvent"></activity>
-        <activity android:name=".ForgetPassword"></activity>
+        <activity android:name=".TAC"></activity>
+        <activity android:name=".TilmeldtEvent" />
+        <activity android:name=".ForgetPassword" />
+        <activity android:name=".model.MapboxMain"></activity>
         <activity
             android:name=".TilmeldteLoeb"
             android:theme="@style/Theme.ActionBar"
