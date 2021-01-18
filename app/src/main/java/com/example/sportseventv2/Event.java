@@ -20,7 +20,7 @@ public class Event extends TopBundMenu implements View.OnClickListener {
 
     private static final String TAG = "Event";
     Button tilmeld_btn;
-    String imageUrl,eTitle,description,eventChild;
+    String imageUrl,eTitle,description,eventChild,startLAT,startLNG,via1LAT,via1LNG,via2LAT,via2LNG,via3LAT,via3LNG,endLAT,endLNG;
 
     FirebaseDatabase rootNode;
     DatabaseReference reference, reference1, reference2;
@@ -45,12 +45,26 @@ public class Event extends TopBundMenu implements View.OnClickListener {
     private void getIncomingIntent(){
         Log.d(TAG, "getIncomingIntent: checker om der event info(billede, titel, beskrivelse");
         if (getIntent().hasExtra("image_event")&&getIntent().hasExtra("title_event")
-                &&getIntent().hasExtra("description_event")&&getIntent().hasExtra("event_Child")){// spørger om der er extra i intent.
+                &&getIntent().hasExtra("description_event")&&getIntent().hasExtra("event_Child")&&getIntent().hasExtra("event_startLAT")&&getIntent().hasExtra("event_startLNG")
+                &&getIntent().hasExtra("event_via1LAT")&&getIntent().hasExtra("event_via1LNG")&&getIntent().hasExtra("event_via2LAT")&&getIntent().hasExtra("event_via2LNG")
+                &&getIntent().hasExtra("event_via3LAT")&&getIntent().hasExtra("event_via3LNG")&&getIntent().hasExtra("event_endLAT")&&getIntent().hasExtra("event_endLNG")){// spørger om der er extra i intent.
 
             imageUrl = getIntent().getStringExtra("image_event");
             eTitle = getIntent().getStringExtra("title_event");
             description = getIntent().getStringExtra("description_event");
             eventChild = getIntent().getStringExtra("event_Child");
+            startLAT = getIntent().getStringExtra("event_startLAT");
+            startLNG = getIntent().getStringExtra("event_startLNG");
+            via1LAT = getIntent().getStringExtra("event_via1LAT");
+            via1LNG = getIntent().getStringExtra("event_via1LNG");
+            via2LAT = getIntent().getStringExtra("event_via2LAT");
+            via2LNG = getIntent().getStringExtra("event_via2LNG");
+            via3LAT = getIntent().getStringExtra("event_via3LAT");
+            via3LNG = getIntent().getStringExtra("event_via3LNG");
+            endLAT = getIntent().getStringExtra("event_endLAT");
+            endLNG = getIntent().getStringExtra("event_endLNG");
+
+
             setIntent(imageUrl,eTitle,description);
         }
     }
@@ -87,7 +101,7 @@ public class Event extends TopBundMenu implements View.OnClickListener {
         reference1 = reference.child(user_name);
         reference2 = reference1.child("events");
 
-        EventHelperClass ehelperClass = new EventHelperClass(eTitle, description, imageUrl,eventChild);
+        EventHelperClass ehelperClass = new EventHelperClass(eTitle, description, imageUrl,eventChild,startLAT,startLNG,via1LAT,via1LNG,via2LAT,via2LNG,via3LAT,via3LNG,endLAT,endLNG);
 
         reference2.child(eventChild).setValue(ehelperClass);// OBS Child må IKKE indeholde tegn eller tal - Da nedenstående linje ikke virker.
         reference2.child("ingen").removeValue();//sletter ingen tilmeldte løb fra databasen.
