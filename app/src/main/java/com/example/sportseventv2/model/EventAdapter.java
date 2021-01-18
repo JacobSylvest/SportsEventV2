@@ -28,16 +28,28 @@ import java.util.List;
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
     private static final String TAG = "EventAdapter";
     LayoutInflater inflater;
-    List<String> titles, descriptions, imageUrls, eventChild;
+    List<String> titles, descriptions, imageUrls, eventChild,startLAT,startLNG,via1LAT,via1LNG,via2LAT,via2LNG,via3LAT,via3LNG,endLAT,endLNG;
     Context mContext;
 
-    public EventAdapter(Context context, List<String> titles, List<String> descriptions, List<String> imageUrls, List<String> eventChild){
+    public EventAdapter(Context context, List<String> titles, List<String> descriptions, List<String> imageUrls, List<String> eventChild,
+                        List<String> startLAT, List<String> startLNG, List<String> via1LAT, List<String> via1LNG, List<String> via2LAT, List<String> via2LNG
+            , List<String> via3LAT, List<String> via3LNG, List<String> endLAT, List<String> endLNG){
         mContext = context;
         this.inflater = LayoutInflater.from(context);
         this.titles = titles;
         this.descriptions = descriptions;
         this.imageUrls = imageUrls;
         this.eventChild = eventChild;
+        this.startLAT = startLAT;
+        this.startLNG = startLNG;
+        this.via1LAT = via1LAT;
+        this.via1LNG = via1LNG;
+        this.via2LAT = via2LAT;
+        this.via2LNG = via2LNG;
+        this.via3LAT = via3LAT;
+        this.via3LNG = via3LNG;
+        this.endLAT = endLAT;
+        this.endLNG = endLNG;
 
         Log.d(TAG, "Adapter: " + titles); // Bruges til debugging
     }
@@ -56,6 +68,16 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         String desc = descriptions.get(position);
         String img = imageUrls.get(position);
         String chld = eventChild.get(position);
+        String sLAT = startLAT.get(position);
+        String sLNG = startLNG.get(position);
+        String v1LAT = via1LAT.get(position);
+        String v1LNG = via1LNG.get(position);
+        String v2LAT = via2LAT.get(position);
+        String v2LNG = via2LNG.get(position);
+        String v3LAT = via3LAT.get(position);
+        String v3LNG = via3LNG.get(position);
+        String eLAT = endLAT.get(position);
+        String eLNG = endLNG.get(position);
 
         holder.title.setText(title);
         holder.content.setText(desc);
@@ -77,6 +99,16 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                     intent.putExtra("title_event",titles.get(position));//tilføjer event title
                     intent.putExtra("description_event",descriptions.get(position));// tilføjer event tekst
                     intent.putExtra("event_Child",eventChild.get(position));
+                    intent.putExtra("event_startLAT",startLAT.get(position));
+                    intent.putExtra("event_startLNG",startLNG.get(position));
+                    intent.putExtra("event_via1LAT",via1LAT.get(position));
+                    intent.putExtra("event_via1LNG",via1LNG.get(position));
+                    intent.putExtra("event_via2LAT",via2LAT.get(position));
+                    intent.putExtra("event_via2LNG",via2LNG.get(position));
+                    intent.putExtra("event_via3LAT",via3LAT.get(position));
+                    intent.putExtra("event_via3LNG",via3LNG.get(position));
+                    intent.putExtra("event_endLAT",endLAT.get(position));
+                    intent.putExtra("event_endLNG",endLNG.get(position));
                     mContext.startActivity(intent);//starter event activitet + klasse
                 }if (v.getContext().getClass() == TilmeldteLoeb.class) {
                     Log.d(TAG, "onClick: trykket fra TilmeldteLøb klassen");
@@ -85,6 +117,16 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                     intent.putExtra("title_event1", titles.get(position));//tilføjer event title
                     intent.putExtra("description_event1", descriptions.get(position));// tilføjer event tekst
                     intent.putExtra("event_Child1", eventChild.get(position));
+                    intent.putExtra("event_startLAT1",startLAT.get(position));
+                    intent.putExtra("event_startLNG1",startLNG.get(position));
+                    intent.putExtra("event_via1LAT1",via1LAT.get(position));
+                    intent.putExtra("event_via1LNG1",via1LNG.get(position));
+                    intent.putExtra("event_via2LAT1",via2LAT.get(position));
+                    intent.putExtra("event_via2LNG1",via2LNG.get(position));
+                    intent.putExtra("event_via3LAT1",via3LAT.get(position));
+                    intent.putExtra("event_via3LNG1",via3LNG.get(position));
+                    intent.putExtra("event_endLAT1",endLAT.get(position));
+                    intent.putExtra("event_endLNG1",endLNG.get(position));
                     mContext.startActivity(intent);//starter event activitet + klasse
                 }
             }

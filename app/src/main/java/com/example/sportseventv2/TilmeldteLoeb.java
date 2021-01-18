@@ -27,7 +27,7 @@ public class TilmeldteLoeb extends TopBundMenu {
     private static final String TAG = "TilmeldteLøb.";
     TextView fullName, username;
     String event_imageUrl,event_title,event_description, user_name,event_child;
-    List<String> titles,descriptions,imageUrl,eventChild;
+    List<String> titles,descriptions,imageUrl,eventChild,startLAT,startLNG,via1LAT,via1LNG,via2LAT,via2LNG,via3LAT,via3LNG,endLAT,endLNG;
     ArrayList<String> eventChilds = new ArrayList<>();
 
     RecyclerView recyclerView;
@@ -47,6 +47,16 @@ public class TilmeldteLoeb extends TopBundMenu {
         descriptions = new ArrayList<>();
         imageUrl = new ArrayList<>();
         eventChild = new ArrayList<>();
+        startLAT = new ArrayList<>();
+        startLNG = new ArrayList<>();
+        via1LAT = new ArrayList<>();
+        via1LNG = new ArrayList<>();
+        via2LAT = new ArrayList<>();
+        via2LNG = new ArrayList<>();
+        via3LAT = new ArrayList<>();
+        via3LNG = new ArrayList<>();
+        endLAT = new ArrayList<>();
+        endLNG = new ArrayList<>();
 
         showNavProfil();
         getUserData();
@@ -121,7 +131,7 @@ public class TilmeldteLoeb extends TopBundMenu {
     private void showData(){
         Log.d(TAG, "showData: started.");
         recyclerView = findViewById(R.id.tilmeldtRecycler);
-        eventAdapter = new EventAdapter(this, titles, descriptions, imageUrl,eventChild);
+        eventAdapter = new EventAdapter(this, titles, descriptions, imageUrl,eventChild,startLAT,startLNG,via1LAT,via1LNG,via2LAT,via2LNG,via3LAT,via3LNG,endLAT,endLNG);
         recyclerView.setLayoutManager(new LinearLayoutManager(this)); // laver recycleren i linearLayout
         recyclerView.setAdapter(eventAdapter);
     }

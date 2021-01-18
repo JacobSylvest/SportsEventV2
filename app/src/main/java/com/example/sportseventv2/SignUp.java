@@ -78,8 +78,18 @@ public class SignUp extends AppCompatActivity {
                 String eTitle = "ingen tilmeldte løb";
                 String description = "...";
                 String imageUrl = "https://3vfjs6e58tj3yfef2wptam15-wpengine.netdna-ssl.com/wp-content/uploads/2019/04/red-x-on-network-icon.png";
+                String startLAT = "";
+                String startLNG = "";
+                String via1LAT = "";
+                String via1LNG = "";
+                String via2LAT = "";
+                String via2LNG = "";
+                String via3LAT = "";
+                String via3LNG = "";
+                String endLAT = "";
+                String endLNG = "";
 
-                EventHelperClass ehelperClass = new EventHelperClass(eTitle, description, imageUrl,eventChild);
+                EventHelperClass ehelperClass = new EventHelperClass(eTitle, description, imageUrl,eventChild,startLAT,startLNG,via1LAT,via1LNG,via2LAT,via2LNG,via3LAT,via3LNG,endLAT,endLNG);
 
                 reference2.child(eventChild).setValue(ehelperClass);
 
