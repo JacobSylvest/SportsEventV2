@@ -53,10 +53,6 @@
             android:label="@string/head_kalender"
             android:theme="@style/Theme.ActionBar" />
         <activity
-            android:name=".Løb"
-            android:label="@string/head_loeb"
-            android:theme="@style/Theme.ActionBar" />
-        <activity
             android:name=".SignUp"
             android:label="@string/head_registrer" />
         <activity
