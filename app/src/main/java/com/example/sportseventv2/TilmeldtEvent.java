@@ -65,17 +65,17 @@ public class TilmeldtEvent extends TopBundMenu implements View.OnClickListener{
     }
 
     private void setCoordinates() {
-        Intent intent = new Intent(this, Løb.class);
-        intent.putExtra("startLat", startLAT);
-        intent.putExtra("startLng", startLNG);
-        intent.putExtra("via1Lat", via1LAT);
-        intent.putExtra("via1Lng", via1LNG);
-        intent.putExtra("via2Lat", via2LAT);
-        intent.putExtra("via2Lng", via2LNG);
-        intent.putExtra("via3Lat", via3LAT);
-        intent.putExtra("via3Lng", via3LNG);
-        intent.putExtra("endLat", endLAT);
-        intent.putExtra("endLng", endLNG);
+        Intent intent = new Intent(this, MapboxMain.class);
+        intent.putExtra("startlad", startLAT);
+        intent.putExtra("startlong", startLNG);
+        intent.putExtra("check1lad", via1LAT);
+        intent.putExtra("check1long", via1LNG);
+        intent.putExtra("check2lad", via2LAT);
+        intent.putExtra("check2long", via2LNG);
+        intent.putExtra("check3lad", via3LAT);
+        intent.putExtra("check3long", via3LNG);
+        intent.putExtra("slutlad", endLAT);
+        intent.putExtra("slutlong", endLNG);
         startActivity(intent);
     }
 
