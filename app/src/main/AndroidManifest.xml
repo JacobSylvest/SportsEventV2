@@ -15,9 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsEventV2">
         <activity android:name=".TAC"></activity>
-        <activity android:name=".TilmeldtEvent" />
-        <activity android:name=".ForgetPassword" />
-        <activity android:name=".model.MapboxMain"></activity>
+        <activity
+            android:name=".TilmeldtEvent"
+            android:theme="@style/Theme.ActionBar"
+            android:label="@string/head_tildmeldte"/>
+        <activity
+            android:name=".ForgetPassword" />
+        <activity
+            android:name=".model.MapboxMain"
+            android:theme="@style/Theme.ActionBar"
+            android:label="@string/head_loeb"/>
         <activity
             android:name=".TilmeldteLoeb"
             android:theme="@style/Theme.ActionBar"
@@ -46,10 +53,6 @@
             android:label="@string/head_kalender"
             android:theme="@style/Theme.ActionBar" />
         <activity
-            android:name=".Løb"
-            android:label="@string/head_loeb"
-            android:theme="@style/Theme.ActionBar" />
-        <activity
             android:name=".SignUp"
             android:label="@string/head_registrer" />
         <activity
@@ -62,6 +65,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

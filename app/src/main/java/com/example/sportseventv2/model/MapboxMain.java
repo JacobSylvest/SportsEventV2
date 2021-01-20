@@ -85,6 +85,7 @@ public class MapboxMain extends TopBundMenu implements OnMapReadyCallback, Locat
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
+
         getCoordinates();
 
 
@@ -135,26 +136,46 @@ public class MapboxMain extends TopBundMenu implements OnMapReadyCallback, Locat
 
     }
 
+    /**
+     * spørger om der er kommet startlong med intent.
+     * @return
+     */
+    private boolean isCoordinates() {
+        if (getIntent().hasExtra("startlong")) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Modtager koordinater fra tilmeldtEvent klassen.
+     * og laver de modtagede Strings om til Doubles.
+     */
     private void getCoordinates() {
-        Intent intent = getIntent();
-        Double originLong = Double.parseDouble(intent.getStringExtra("startlong").replace(",", "."));
-        Double originLad = Double.parseDouble(intent.getStringExtra("startlad").replace(",", "."));
-        Double destinantionLong = Double.parseDouble(intent.getStringExtra("slutlong").replace(",", "."));
-        Double destinantionLad = Double.parseDouble(intent.getStringExtra("slutlad").replace(",", "."));
+        if (getIntent().hasExtra("startlong")&&getIntent().hasExtra("startlad")&&getIntent().hasExtra("slutlong")&&getIntent().hasExtra("slutlad")
+                &&getIntent().hasExtra("check1long")&&getIntent().hasExtra("check1lad")&&getIntent().hasExtra("check2long")&&getIntent().hasExtra("check2lad")
+                &&getIntent().hasExtra("check3long")&&getIntent().hasExtra("check3lad")) {
+            Log.d(TAG, "getCoordinates: ");
+            Intent intent = getIntent();
+            Double originLong = Double.parseDouble(intent.getStringExtra("startlong").replace(",", "."));
+            Double originLad = Double.parseDouble(intent.getStringExtra("startlad").replace(",", "."));
+            Double destinantionLong = Double.parseDouble(intent.getStringExtra("slutlong").replace(",", "."));
+            Double destinantionLad = Double.parseDouble(intent.getStringExtra("slutlad").replace(",", "."));
 
-        Double chp1Long = Double.parseDouble(intent.getStringExtra("check1long").replace(",", "."));
-        Double chp1Lad = Double.parseDouble(intent.getStringExtra("check1lad").replace(",", "."));
-        Double chp2Long = Double.parseDouble(intent.getStringExtra("check2long").replace(",", "."));
-        Double chp2Lad = Double.parseDouble(intent.getStringExtra("check2lad").replace(",", "."));
-        Double chp3Long = Double.parseDouble(intent.getStringExtra("check3long").replace(",", "."));
-        Double chp3Lad = Double.parseDouble(intent.getStringExtra("check3lad").replace(",", "."));
+            Double chp1Long = Double.parseDouble(intent.getStringExtra("check1long").replace(",", "."));
+            Double chp1Lad = Double.parseDouble(intent.getStringExtra("check1lad").replace(",", "."));
+            Double chp2Long = Double.parseDouble(intent.getStringExtra("check2long").replace(",", "."));
+            Double chp2Lad = Double.parseDouble(intent.getStringExtra("check2lad").replace(",", "."));
+            Double chp3Long = Double.parseDouble(intent.getStringExtra("check3long").replace(",", "."));
+            Double chp3Lad = Double.parseDouble(intent.getStringExtra("check3lad").replace(",", "."));
 
-        slut = new LatLng(destinantionLad, destinantionLong);
-        start = new LatLng(originLad, originLong);
+            slut = new LatLng(destinantionLad, destinantionLong);
+            start = new LatLng(originLad, originLong);
 
-        chp1 = new LatLng(chp1Lad,chp1Long);
-        chp2 = new LatLng(chp2Lad,chp2Long);
-        chp3 = new LatLng(chp3Lad,chp3Long);
+            chp1 = new LatLng(chp1Lad, chp1Long);
+            chp2 = new LatLng(chp2Lad, chp2Long);
+            chp3 = new LatLng(chp3Lad, chp3Long);
+        }
     }
 
     @Override
@@ -208,24 +229,25 @@ public class MapboxMain extends TopBundMenu implements OnMapReadyCallback, Locat
             map.removeMarker(checkPointMarker2);
             map.removeMarker(checkPointMarker3);
         }
+        if (isCoordinates()){ //hvis der er et startlong med intent
+            destinationMarker = map.addMarker(new MarkerOptions().position(slut));
+            originMarker = map.addMarker(new MarkerOptions().position(start));
 
-        destinationMarker = map.addMarker(new MarkerOptions().position(slut));
-        originMarker = map.addMarker(new MarkerOptions().position(start));
+            checkPointMarker1 = map.addMarker(new MarkerOptions().position(chp1).title("Checkpoint 1"));
+            checkPointMarker2 = map.addMarker(new MarkerOptions().position(chp2).title("Checkpoint 2"));
+            checkPointMarker3 = map.addMarker(new MarkerOptions().position(chp3).title("Checkpoint 3"));
 
-        checkPointMarker1 = map.addMarker(new MarkerOptions().position(chp1).title("Checkpoint 1"));
-        checkPointMarker2 = map.addMarker(new MarkerOptions().position(chp2).title("Checkpoint 2"));
-        checkPointMarker3 = map.addMarker(new MarkerOptions().position(chp3).title("Checkpoint 3"));
+            destinationPosition = Point.fromLngLat(slut.getLongitude(), slut.getLatitude());
+            originPosition = Point.fromLngLat(start.getLongitude(), start.getLatitude());
+            Point checkPoint1 = Point.fromLngLat(chp1.getLongitude(), chp1.getLatitude());
+            Point checkPoint2 = Point.fromLngLat(chp2.getLongitude(), chp2.getLatitude());
+            Point checkPoint3 = Point.fromLngLat(chp3.getLongitude(), chp3.getLatitude());
 
-        destinationPosition = Point.fromLngLat(slut.getLongitude(), slut.getLatitude());
-        originPosition = Point.fromLngLat(start.getLongitude(), start.getLatitude());
-        Point checkPoint1 = Point.fromLngLat(chp1.getLongitude(), chp1.getLatitude());
-        Point checkPoint2 = Point.fromLngLat(chp2.getLongitude(), chp2.getLatitude());
-        Point checkPoint3 = Point.fromLngLat(chp3.getLongitude(), chp3.getLatitude());
+            getRoute(originPosition, checkPoint1, checkPoint2, checkPoint3, destinationPosition);
 
-        getRoute(originPosition, checkPoint1, checkPoint2, checkPoint3, destinationPosition);
-
-        startButton.setEnabled(true);
-        startButton.setBackgroundResource(R.color.mapboxBlue);
+            startButton.setEnabled(true);
+            startButton.setBackgroundResource(R.color.mapboxBlue);
+        }
     }
 
     private void getRoute(Point origin, Point check1, Point check2, Point check3, Point destination) {

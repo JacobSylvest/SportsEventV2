@@ -12,6 +12,7 @@
     <string name="head_tildmeldte">Tilmeldte Løb</string>
     <string name="head_event">Event</string>
 
+
     <!--Strings til login -->
     <string name="login_velkommen">Velkommen</string>
     <string name="hint_pass">Kodeord</string>
