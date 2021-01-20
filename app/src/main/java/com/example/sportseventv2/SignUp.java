@@ -152,6 +152,7 @@ public class SignUp extends AppCompatActivity {
 
     private Boolean validatephoneNo() {
         String val = regPhoneNo.getEditText().getText().toString();
+        //string PhoneNoPattern = "[0-9]{10}"
         if (val.isEmpty()){
             regPhoneNo.setError("Feltet må ikke være tomt");
             return false;

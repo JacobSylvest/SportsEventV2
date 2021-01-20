@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-/*
-Denne side bliver ikke uddybet yderligere til dette projekt. der vil, for fremtiden, være mulighed for, at 'authenticate' brugere gennem firebase database (indbygget funktion),
-men for vores projekt ser vi ikke dette som en overbygning der er nødvendig. Vi har allerede kald frem og tlibage fra en ekstern database, og dette opfylder kravene til
-brugen af database.
+/**
+ * Denne side bliver ikke uddybet yderligere til dette projekt. der vil, for fremtiden, være mulighed for, at 'authenticate' brugere gennem firebase database (indbygget funktion),
+ * men for vores projekt ser vi ikke dette som en overbygning der er nødvendig. Vi har allerede kald frem og tlibage fra en ekstern database, og dette opfylder kravene til
+ * brugen af database.
  */
 
 public class ForgetPassword extends AppCompatActivity {

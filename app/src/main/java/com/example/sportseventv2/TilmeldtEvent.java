@@ -64,6 +64,21 @@ public class TilmeldtEvent extends TopBundMenu implements View.OnClickListener{
         }
     }
 
+    private void setCoordinates() {
+        Intent intent = new Intent(this, Løb.class);
+        intent.putExtra("startLat", startLAT);
+        intent.putExtra("startLng", startLNG);
+        intent.putExtra("via1Lat", via1LAT);
+        intent.putExtra("via1Lng", via1LNG);
+        intent.putExtra("via2Lat", via2LAT);
+        intent.putExtra("via2Lng", via2LNG);
+        intent.putExtra("via3Lat", via3LAT);
+        intent.putExtra("via3Lng", via3LNG);
+        intent.putExtra("endLat", endLAT);
+        intent.putExtra("endLng", endLNG);
+        startActivity(intent);
+    }
+
     /**
      * Metode der sætter info fra getIncomingIntent til activity_event.xml.
      * @param imageUrl
@@ -92,15 +107,10 @@ public class TilmeldtEvent extends TopBundMenu implements View.OnClickListener{
         username.setText(user_name);
     }
 
-    private void openStartLoeb(){
-        Intent intent = new Intent(this, MapboxMain.class);
-        startActivity(intent);
-    }
-
     @Override
     public void onClick(View v) {
         if(v == startLoeb_knap){
-            openStartLoeb();
+            setCoordinates();
         }
     }
 }

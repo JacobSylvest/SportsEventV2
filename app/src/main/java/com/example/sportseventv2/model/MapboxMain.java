@@ -57,7 +57,6 @@ public class MapboxMain extends TopBundMenu implements OnMapReadyCallback, Locat
     private PermissionsManager permissionsManager;
     private LocationEngine locationEngine;
     private LocationLayerPlugin locationLayerPlugin;
-    private Location originLocation;
     private Point originPosition;
     private Point destinationPosition;
     private Marker destinationMarker;
@@ -86,27 +85,7 @@ public class MapboxMain extends TopBundMenu implements OnMapReadyCallback, Locat
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
-        Intent intent = getIntent();
-        Double originLong = intent.getDoubleExtra("startlong", 55.50);
-        Double originLad = intent.getDoubleExtra("startlad",12.0);
-        Double destinantionLong = intent.getDoubleExtra("slutlong",55.0);
-        Double destinantionLad = intent.getDoubleExtra("slutlad",12.50);
-
-        Double chp1Long = intent.getDoubleExtra("check1long", 55.50);
-        Double chp1Lad = intent.getDoubleExtra("check1lad",12.0);
-        Double chp2Long = intent.getDoubleExtra("check2long",55.0);
-        Double chp2Lad = intent.getDoubleExtra("check2lad",12.50);
-        Double chp3Long = intent.getDoubleExtra("check3long",55.0);
-        Double chp3Lad = intent.getDoubleExtra("check3lad",12.50);
-
-        slut = new LatLng(destinantionLad, destinantionLong);
-        start = new LatLng(originLad, originLong);
-
-        chp1 = new LatLng(chp1Lad,chp1Long);
-        chp2 = new LatLng(chp2Lad,chp2Long);
-        chp3 = new LatLng(chp3Lad,chp3Long);
-
-
+        getCoordinates();
 
 
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -155,6 +134,29 @@ public class MapboxMain extends TopBundMenu implements OnMapReadyCallback, Locat
         });
 
     }
+
+    private void getCoordinates() {
+        Intent intent = getIntent();
+        Double originLong = Double.parseDouble(intent.getStringExtra("startlong").replace(",", "."));
+        Double originLad = Double.parseDouble(intent.getStringExtra("startlad").replace(",", "."));
+        Double destinantionLong = Double.parseDouble(intent.getStringExtra("slutlong").replace(",", "."));
+        Double destinantionLad = Double.parseDouble(intent.getStringExtra("slutlad").replace(",", "."));
+
+        Double chp1Long = Double.parseDouble(intent.getStringExtra("check1long").replace(",", "."));
+        Double chp1Lad = Double.parseDouble(intent.getStringExtra("check1lad").replace(",", "."));
+        Double chp2Long = Double.parseDouble(intent.getStringExtra("check2long").replace(",", "."));
+        Double chp2Lad = Double.parseDouble(intent.getStringExtra("check2lad").replace(",", "."));
+        Double chp3Long = Double.parseDouble(intent.getStringExtra("check3long").replace(",", "."));
+        Double chp3Lad = Double.parseDouble(intent.getStringExtra("check3lad").replace(",", "."));
+
+        slut = new LatLng(destinantionLad, destinantionLong);
+        start = new LatLng(originLad, originLong);
+
+        chp1 = new LatLng(chp1Lad,chp1Long);
+        chp2 = new LatLng(chp2Lad,chp2Long);
+        chp3 = new LatLng(chp3Lad,chp3Long);
+    }
+
     @Override
     public void onMapReady(MapboxMap mapboxMap) {
         map = mapboxMap;
@@ -179,7 +181,6 @@ public class MapboxMain extends TopBundMenu implements OnMapReadyCallback, Locat
 
         Location lastLocation = locationEngine.getLastLocation();
         if (lastLocation != null) {
-            originLocation = lastLocation;
             setCameraPosition(new LatLng(lastLocation));
         } else {
             locationEngine.addLocationEngineListener(this);
@@ -276,7 +277,6 @@ public class MapboxMain extends TopBundMenu implements OnMapReadyCallback, Locat
     @Override
     public void onLocationChanged(Location location) {
         if(location != null) {
-            originLocation = location;
             setCameraPosition(new LatLng(location));
         }
     }
