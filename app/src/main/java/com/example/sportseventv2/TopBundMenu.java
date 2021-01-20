@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.sportseventv2.model.MapboxMain;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ public class TopBundMenu extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.item1:
                 Toast.makeText(this,
-                        "Har du brug for hjælp, så ring til en ven eller besøg vores hjemmeside", Toast.LENGTH_LONG).show();
+                        "Har du brug for hjælp, så kontakt os", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.item2:
                 Intent intentHelp = new Intent(this, TopHelp.class);
@@ -83,7 +85,7 @@ public class TopBundMenu extends AppCompatActivity {
 
                     case R.id.løb:
                         startActivity(new Intent(getApplicationContext()
-                                , Løb.class));
+                                , MapboxMain.class));
                         overridePendingTransition(0, 0);
                         return true;
 
