@@ -68,16 +68,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         String desc = descriptions.get(position);
         String img = imageUrls.get(position);
         String chld = eventChild.get(position);
-        /*String sLAT = startLAT.get(position);
-        String sLNG = startLNG.get(position);
-        String v1LAT = via1LAT.get(position);
-        String v1LNG = via1LNG.get(position);
-        String v2LAT = via2LAT.get(position);
-        String v2LNG = via2LNG.get(position);
-        String v3LAT = via3LAT.get(position);
-        String v3LNG = via3LNG.get(position);
-        String eLAT = endLAT.get(position);
-        String eLNG = endLNG.get(position);*/
 
         holder.title.setText(title);
         holder.content.setText(desc);
