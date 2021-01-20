@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Profil"
-    android:background="#fff"
-    android:orientation="vertical">
+    android:background="@drawable/cal_bgg"
+    android:orientation="vertical"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#2F5597"
-        android:padding="20dp"
+        android:padding="10dp"
         android:id="@+id/profile_top">
 
         <ImageView
@@ -50,15 +51,20 @@
             android:includeFontPadding="false"
             android:textColor="#000"
             android:textSize="14sp" />
-
-
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@color/white">
 
     <ImageView
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:id="@+id/eventImage3"
-        android:src="@drawable/ic_date" />
+        android:src="@drawable/ic_date"
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -87,6 +93,8 @@
         android:layout_marginTop="5dp"
         android:layout_below="@id/eventTitle3"
         />
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

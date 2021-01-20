@@ -17,12 +17,14 @@
         <activity android:name=".TAC"></activity>
         <activity
             android:name=".TilmeldtEvent"
-            android:theme="@style/Theme.ActionBar"/>
+            android:theme="@style/Theme.ActionBar"
+            android:label="@string/head_tildmeldte"/>
         <activity
             android:name=".ForgetPassword" />
         <activity
             android:name=".model.MapboxMain"
-            android:theme="@style/Theme.ActionBar"/>
+            android:theme="@style/Theme.ActionBar"
+            android:label="@string/head_loeb"/>
         <activity
             android:name=".TilmeldteLoeb"
             android:theme="@style/Theme.ActionBar"
