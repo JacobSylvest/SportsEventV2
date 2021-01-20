@@ -1,4 +1,4 @@
-package com.example.sportseventv2.model;
+package com.example.sportseventv2;
 
 import androidx.annotation.NonNull;
 
@@ -10,10 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.sportseventv2.Kalender;
-import com.example.sportseventv2.Profil;
-import com.example.sportseventv2.R;
-import com.example.sportseventv2.TopBundMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineListener;

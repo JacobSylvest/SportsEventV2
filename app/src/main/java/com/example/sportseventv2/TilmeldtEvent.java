@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.sportseventv2.model.MapboxMain;
 import com.squareup.picasso.Picasso;
 
 public class TilmeldtEvent extends TopBundMenu implements View.OnClickListener{

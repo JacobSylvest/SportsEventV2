@@ -22,7 +22,7 @@
         <activity
             android:name=".ForgetPassword" />
         <activity
-            android:name=".model.MapboxMain"
+            android:name=".MapboxMain"
             android:theme="@style/Theme.ActionBar"
             android:label="@string/head_loeb"/>
         <activity

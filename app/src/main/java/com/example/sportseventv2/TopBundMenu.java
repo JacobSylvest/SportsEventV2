@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.sportseventv2.model.MapboxMain;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 

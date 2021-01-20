@@ -1,4 +1,4 @@
-package com.example.sportseventv2.model;
+package com.example.sportseventv2;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,11 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sportseventv2.Event;
-import com.example.sportseventv2.Kalender;
-import com.example.sportseventv2.R;
-import com.example.sportseventv2.TilmeldtEvent;
-import com.example.sportseventv2.TilmeldteLoeb;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
