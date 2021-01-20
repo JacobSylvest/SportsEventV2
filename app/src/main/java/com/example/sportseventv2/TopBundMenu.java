@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.util.ArrayList;
 
@@ -41,6 +42,8 @@ public class TopBundMenu extends AppCompatActivity {
                 Intent intentLogin = new Intent(this, Login.class);
                 startActivity(intentLogin);
                 return true;
+           /* case R.id.item5:
+                throw new RuntimeException("Test Crash");*/
             default:
                 return super.onOptionsItemSelected(item);
         }
